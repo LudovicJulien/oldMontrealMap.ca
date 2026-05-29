@@ -1,0 +1,67 @@
+ body {
+  margin: 0;
+  padding: 0;
+ }
+ 
+ #background 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: relative; 
+	 margin-left: auto; 
+	 margin-right: auto; 
+	 width: 1280px;
+	 height: 1690px; 
+	 overflow: hidden;
+	 z-index:0;
+	} 
+
+ #Arrireplan 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: absolute; 
+	 width: 1280px;
+	 height: 1690px;
+	 z-index:1;
+} 
+
+ #PublisherROBERTPERRO 
+{ 
+	 left: 195px; 
+	 top: 1596px; 
+	 position: absolute; 
+	 width: 517px;
+	 height: 37px;
+	 z-index:2;
+} 
+
+ #IconPDFFra 
+{ 
+	 left: 959px; 
+	 top: 884px; 
+	 position: absolute; 
+	 width: 69px;
+	 height: 72px;
+	 z-index:3;
+} 
+
+ #IconPDFAng 
+{ 
+	 left: 706px; 
+	 top: 880px; 
+	 position: absolute; 
+	 width: 69px;
+	 height: 72px;
+	 z-index:4;
+} 
+
+ #franais 
+{ 
+	 left: 1105px; 
+	 top: 20px; 
+	 position: absolute; 
+	 width: 74px;
+	 height: 15px;
+	 z-index:5;
+} 
