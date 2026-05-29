@@ -1,0 +1,39 @@
+# Environnement
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (si tu as du node)
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+out/
+
+# Cloudflare
+.wrangler/
+wrangler.toml (optionnel, dépend si tu veux le versionner)
+
+# Autres fichiers temporaires
+*.tmp
+claude.md
+*.backup
