@@ -1,20 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Official Map — Old Montréal 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#0a78c2;
+    --blue-deep:#075a93;
+    --blue-ink:#062e4a;
+    --gold:#f5c518;
+    --gold-deep:#e0a800;
+    --paper:#ffffff;
+    --mist:#f3f8fc;
+    --line:#e3edf5;
+    --ink:#1a2a35;
+    --muted:#5a7385;
+    --sans:'Archivo',sans-serif;
+    --serif:'Fraunces',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-  
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Old Montreal Map - Historic Streets & Attractions Guide</title>
-  <meta name="description" content="Explore Old Montreal with our interactive historic map. Discover landmarks, heritage sites, and attractions in Vieux-Montréal. Plan your visit today.">
-  <link href="styles.css" rel="stylesheet" type="text/css" />
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
 
-</head><body>
-<div id="background">
-<div id="Arrireplan"><img src="images/Arrireplan.png" /></div>
-<div id="PublisherROBERTPERRO"><a href="mailto:rp@rpcom.ca"><img style="border: 0px solid ; width: 517px; height: 37px;" alt="Mailto" src="images/PublisherROBERTPERRO.png" /></a></div>
-<div id="IconPDFFra"><a href="mapfr.pdf"><img style="border: 0px solid ; width: 69px; height: 72px;" alt="FrenchMap" src="images/IconPDFFra.png" /></a></div>
-<div id="IconPDFAng"><a href="mapeng.pdf"><img style="border: 0px solid ; width: 69px; height: 72px;" alt="EnglishMap" src="images/IconPDFAng.png" /></a></div>
-<div id="franais"><a href="https://www.cartevieuxmontreal.ca/"><img style="border: 0px solid ; width: 74px; height: 15px;" alt="French" src="images/franais.png" /></a></div>
-</div>
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.5px}
+  .brand .mark{
+    width:34px;height:34px;border-radius:9px;
+    background:linear-gradient(135deg,var(--blue),var(--blue-deep));
+    display:grid;place-items:center;color:#fff;font-family:var(--serif);font-style:italic;font-size:20px;
+  }
+  .brand small{display:block;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  .navlinks{display:flex;gap:30px;font-size:14px;font-weight:600;color:var(--muted)}
+  .navlinks a{transition:color .2s}
+  .navlinks a:hover{color:var(--blue)}
+  .btn{
+    background:var(--blue);color:#fff;padding:11px 22px;border-radius:100px;
+    font-weight:700;font-size:14px;border:none;cursor:pointer;transition:.25s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn:hover{background:var(--blue-deep);transform:translateY(-1px);box-shadow:0 8px 22px -8px rgba(10,120,194,.6)}
+  .btn.gold{background:var(--gold);color:var(--blue-ink)}
+  .btn.gold:hover{background:var(--gold-deep)}
+  .btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--blue);background:var(--mist);transform:translateY(-1px);box-shadow:none}
+  @media(max-width:780px){.navlinks{display:none}}
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a47e66cf0cff4db0b8986c49aeafebb7","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-</body></html>
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:clip;padding:84px 0 70px;background:
+    radial-gradient(1200px 500px at 80% -10%,rgba(10,120,194,.10),transparent 60%),
+    radial-gradient(800px 400px at 0% 120%,rgba(245,197,24,.12),transparent 60%),
+    var(--paper);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--blue);background:var(--mist);border:1px solid var(--line);
+    padding:7px 15px;border-radius:100px;margin-bottom:24px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(245,197,24,.25)}
+  h1.title{font-family:var(--serif);font-weight:600;font-size:clamp(46px,6vw,82px);line-height:.95;letter-spacing:-1.5px;color:var(--blue-ink)}
+  h1.title em{font-style:italic;color:var(--blue);display:block}
+  h1.title .year{
+    font-family:var(--sans);font-weight:800;font-size:.42em;letter-spacing:1px;
+    color:var(--gold-deep);display:inline-block;margin-top:14px;
+    -webkit-text-stroke:0;
+  }
+  .lede{font-size:19px;color:var(--muted);max-width:480px;margin:26px 0 32px;line-height:1.55}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-stats{display:flex;gap:34px;margin-top:42px;padding-top:30px;border-top:1px solid var(--line)}
+  .stat .n{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--blue-ink);line-height:1}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:4px}
+
+  /* hero visual: floating map fold */
+  .hero-art{
+    position:relative;
+    display:flex;
+    align-items:flex-start;
+    padding:24px 0 40px;
+  }
+  .fold{
+    position:relative;flex-shrink:0;
+    border-radius:18px;overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(6,46,74,.45);
+  }
+  .fold img{width:100%;height:auto;display:block}
+  .fold.a{width:44%;z-index:2;margin-top:16px;transform:rotate(-5deg);transition:transform .5s}
+  .fold.b{width:40%;z-index:1;margin-left:-10%;margin-top:50px;transform:rotate(6deg);transition:transform .5s}
+  .hero-art:hover .fold.a{transform:rotate(-3deg) translateY(-8px)}
+  .hero-art:hover .fold.b{transform:rotate(4deg) translateY(8px)}
+  .fold-label{
+    position:absolute;top:0;left:0;right:0;padding:20px;color:#fff;
+    background:linear-gradient(180deg,rgba(6,46,74,.55),transparent);
+    font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;
+  }
+  .ribbon{
+    position:absolute;z-index:3;top:0;right:6%;
+    background:var(--gold);color:var(--blue-ink);font-weight:800;font-size:13px;
+    padding:10px 18px;border-radius:100px;letter-spacing:.5px;
+    box-shadow:0 12px 30px -10px rgba(245,197,24,.8);transform:rotate(4deg);
+  }
+  @media(max-width:880px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-copy{text-align:center}
+    .hero-copy .eyebrow{margin-left:auto;margin-right:auto}
+    .hero-copy .lede{max-width:100%;margin-left:auto;margin-right:auto}
+    .hero-cta{justify-content:center}
+    .hero-stats{justify-content:center}
+    .hero-art{order:-1;padding:16px 0 30px;justify-content:center}
+    .fold.a{width:38%;max-width:190px;margin-top:10px}
+    .fold.b{width:34%;max-width:170px;margin-left:-8%;margin-top:36px}
+  }
+
+  /* placeholder visual style */
+  .ph{
+    background:
+      repeating-linear-gradient(45deg,rgba(255,255,255,.06) 0 12px,transparent 12px 24px),
+      linear-gradient(135deg,var(--blue),var(--blue-deep));
+    display:grid;place-items:center;color:rgba(255,255,255,.8);position:relative;
+  }
+  .ph::after{
+    content:attr(data-label);position:absolute;bottom:14px;left:14px;right:14px;
+    font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+    color:rgba(255,255,255,.85);
+  }
+  .ph .cam{width:46px;height:46px;opacity:.55}
+
+  /* ---------- SLIDER ---------- */
+  .section{padding:88px 0}
+  .section.tint{background:var(--mist)}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 50px}
+  .sec-head .eyebrow{margin-bottom:18px}
+  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(32px,4vw,48px);color:var(--blue-ink);letter-spacing:-.5px;line-height:1.05}
+  .sec-head p{color:var(--muted);font-size:17px;margin-top:16px}
+
+  .slider{position:relative;max-width:1000px;margin:0 auto}
+  .slides{
+    position:relative;border-radius:24px;overflow:hidden;
+    box-shadow:0 30px 70px -34px rgba(6,46,74,.5);
+    aspect-ratio:16/9;background:var(--blue-ink);
+  }
+  .slide{
+    position:absolute;inset:0;opacity:0;visibility:hidden;
+    transition:opacity .7s ease, transform .7s ease;transform:scale(1.04);
+  }
+  .slide.active{opacity:1;visibility:visible;transform:scale(1)}
+  .slide .ph{width:100%;height:100%}
+  .slide-cap{
+    position:absolute;left:0;right:0;bottom:0;padding:46px 34px 28px;
+    background:linear-gradient(0deg,rgba(6,46,74,.85),transparent);color:#fff;
+  }
+  .slide-cap h3{font-family:var(--serif);font-weight:600;font-size:24px;margin-bottom:4px}
+  .slide-cap p{font-size:14px;color:rgba(255,255,255,.85);font-weight:500}
+
+  .arrow{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+    width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(255,255,255,.92);color:var(--blue-ink);
+    display:grid;place-items:center;font-size:20px;font-weight:700;
+    box-shadow:0 10px 24px -8px rgba(6,46,74,.5);transition:.25s;
+  }
+  .arrow:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
+  .arrow.prev{left:18px}.arrow.next{right:18px}
+
+  .dots{display:flex;justify-content:center;gap:10px;margin-top:24px}
+  .dot-b{width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;background:var(--line);transition:.3s}
+  .dot-b.active{background:var(--blue);width:30px;border-radius:100px}
+
+  .thumbs{display:flex;justify-content:center;gap:12px;margin-top:24px;flex-wrap:wrap}
+  .thumb{width:88px;height:58px;border-radius:10px;overflow:hidden;cursor:pointer;opacity:.5;transition:.3s;border:2px solid transparent}
+  .thumb.active{opacity:1;border-color:var(--blue)}
+  .thumb .ph{width:100%;height:100%}
+  .thumb .ph::after{display:none}
+
+  /* ---------- FEATURES ---------- */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:34px 30px;
+    transition:.3s;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(6,46,74,.35);border-color:transparent}
+  .card .ic{
+    width:54px;height:54px;border-radius:14px;display:grid;place-items:center;margin-bottom:22px;
+    background:var(--mist);font-size:26px;
+  }
+  .card h3{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--blue-ink);margin-bottom:10px}
+  .card p{color:var(--muted);font-size:15px}
+  .card::before{content:"";position:absolute;top:0;left:0;height:3px;width:0;background:var(--gold);transition:width .4s}
+  .card:hover::before{width:100%}
+  @media(max-width:880px){.features{grid-template-columns:1fr}}
+
+  /* ---------- PAPER VERSION ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .split-art{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(6,46,74,.4)}
+  .split-art .ph{width:100%;height:100%}
+  .split h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,44px);color:var(--blue-ink);letter-spacing:-.5px;margin-bottom:20px;line-height:1.05}
+  .split p{color:var(--muted);font-size:16px;margin-bottom:16px}
+  .award{
+    display:inline-flex;align-items:center;gap:12px;margin-top:18px;
+    background:var(--mist);border:1px solid var(--line);border-radius:14px;padding:14px 18px;
+  }
+  .award .b{font-size:26px}
+  .award span{font-size:14px;color:var(--ink);font-weight:600}
+  .award span b{color:var(--blue);display:block;font-weight:800}
+  .where{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+  .where .chip{font-size:13px;font-weight:600;color:var(--blue-deep);background:var(--mist);border:1px solid var(--line);padding:8px 14px;border-radius:100px}
+  @media(max-width:880px){.split{grid-template-columns:1fr;gap:40px}}
+
+  /* ---------- DOWNLOAD CTA ---------- */
+  .download{
+    background:linear-gradient(135deg,var(--blue),var(--blue-ink));
+    border-radius:28px;padding:60px;text-align:center;color:#fff;position:relative;overflow:hidden;
+  }
+  .download::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(500px 300px at 90% 0%,rgba(245,197,24,.25),transparent 60%);}
+  .download h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4vw,46px);position:relative;letter-spacing:-.5px}
+  .download p{color:rgba(255,255,255,.85);font-size:18px;margin:16px 0 30px;position:relative}
+  .dl-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative}
+  .dl{
+    display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);
+    padding:16px 26px;border-radius:14px;font-weight:700;transition:.25s;cursor:pointer;
+  }
+  .dl:hover{background:#fff;color:var(--blue-ink);transform:translateY(-2px)}
+  .dl .tag{background:var(--gold);color:var(--blue-ink);font-size:11px;font-weight:800;padding:4px 8px;border-radius:6px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--blue-ink);color:#fff;padding:54px 0 30px;margin-top:10px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .foot-brand{max-width:300px}
+  .foot-brand p{color:rgba(255,255,255,.65);font-size:14px;margin-top:14px}
+  .foot-col h4{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .foot-col a{display:block;color:rgba(255,255,255,.75);font-size:14px;margin-bottom:9px;transition:.2s}
+  .foot-col a:hover{color:#fff}
+  .copyright{padding-top:24px;font-size:13px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div>OLD MONTRÉAL<small>Official Map™ 2026</small></div>
+    </div>
+    <nav class="navlinks">
+      <!-- <a href="#gallery">Gallery</a> -->
+      <a href="#features">What's Inside</a>
+      <a href="#paper">Paper Version</a>
+      <a href="#download">View the Map</a>
+    </nav>
+    <a href="#download" class="btn">View the Map</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow"><span class="dot"></span>The Official Map · Edition 2026</span>
+      <h1 class="title">Old <em>Montréal</em><span class="year">— 2026 EDITION</span></h1>
+      <p class="lede">A unique, comprehensive map of every tourist attraction in the historic quarter — complete with tappable links, a night-lights walking circuit, and everything worth seeing along the way.</p>
+      <div class="hero-cta">
+        <a href="#download" class="btn gold">View the Map</a>
+        <!-- <a href="#gallery" class="btn ghost">View the Gallery →</a> -->
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">300K+</div><div class="l">Copies distributed</div></div>
+        <div class="stat"><div class="n">25 yrs</div><div class="l">Of trusted editions</div></div>
+        <div class="stat"><div class="n">1 award</div><div class="l">Ulysse · Tourisme québécois</div></div>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <div class="ribbon">★ New for 2026</div>
+      <div class="fold a">
+        <img src="./images/map-cover.png" alt="Map cover"></image>
+      </div>
+      <div class="fold b">
+       <img src="./images/carte-cover.png" alt="Carte cover"></image>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDER / GALLERY — section masquée en attendant les images -->
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>What's inside</span>
+      <h2>Everything you need for a memorable visit</h2>
+    </div>
+    <div class="features">
+      <div class="card reveal">
+        <div class="ic">🗺️</div>
+        <h3>Walking circuit</h3>
+        <p>A large, easy-to-read pedestrian map featuring a circuit along the streets, public squares and buildings illuminated at night.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">🏛️</div>
+        <h3>Heritage & culture</h3>
+        <p>An overview of major heritage and religious sites, plus cultural attractions with up-to-date schedules and rates.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">🎷</div>
+        <h3>Eat, drink & explore</h3>
+        <p>A complete list of cafés, restaurants and terraces — plus jazz bars, nightclubs, lounges and dance clubs.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">🎟️</div>
+        <h3>Free events</h3>
+        <p>Free live concerts, street exhibits and a full calendar of everything happening across the quarter.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">📱</div>
+        <h3>Tap or click links</h3>
+        <p>Interactive links throughout the digital edition take you straight to schedules, tickets and directions.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">🌃</div>
+        <h3>Night-lights tour</h3>
+        <p>A dedicated lights circuit guiding you to the most beautifully illuminated façades after dark.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAPER VERSION -->
+<section class="section tint" id="paper">
+  <div class="wrap split" style="grid-template-columns:1fr;max-width:700px">
+    <div class="reveal">
+      <h2>The paper version, everywhere you look</h2>
+      <p>Readily available throughout Old Montréal — at the Tourist Information Centre in Place Jacques-Cartier, Bonsecours Market, the Notre-Dame Basilica, the Palais des Congrès reception desk, and with most hotel concierges.</p>
+      <p>Created over 25 years ago, the map won a Ulysse award as part of the Grands prix du tourisme québécois.</p>
+      <div class="award">
+        <span class="b">🏆</span>
+        <span><b>Ulysse Award</b>Grands prix du tourisme québécois</span>
+      </div>
+      <div class="where">
+        <span class="chip">Place Jacques-Cartier</span>
+        <span class="chip">Bonsecours Market</span>
+        <span class="chip">Notre-Dame Basilica</span>
+        <span class="chip">Palais des Congrès</span>
+        <span class="chip">Hotel concierges</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIEW THE MAP -->
+<section class="section" id="download">
+  <div class="wrap">
+    <div class="download reveal">
+      <h2>View the digital map</h2>
+      <p>Open the full official map directly in your browser and start planning your route through the historic quarter.</p>
+      <div class="dl-row">
+        <a class="dl" href="mapeng.pdf" target="_blank" rel="noopener"><span class="tag">PDF</span> English Map</a>
+        <a class="dl" href="mapfr.pdf" target="_blank" rel="noopener"><span class="tag">PDF</span> French Map</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="color:#fff">
+          <div>OLD MONTRÉAL<small style="color:rgba(255,255,255,.6)">Official Map™ 2026</small></div>
+        </div>
+        <p>In partnership with Vieux-Montréal SDC. The trusted guide to the historic quarter for over 25 years.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <!-- <a href="#gallery">Display Gallery</a> -->
+        <a href="#features">What's Inside</a>
+        <a href="#paper">Paper Version</a>
+        <a href="#download">View the Map</a>
+      </div>
+      <div class="foot-col">
+        <h4>Publisher</h4>
+        <a href="popmedia.ca">Pop Media</a>
+        <a href="mailto:mjulien@popmedia.ca">mjulien@popmedia.ca</a>
+      </div>
+      <div class="foot-col">
+        <h4>Developer</h4>
+        <a href="https://www.linkedin.com/in/LudovicJulienLOG" target="_blank" rel="noopener">Ludovic Julien</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2026 Old Montréal Official Map™. All rights reserved.</span>
+      <span>In partnership with Vieux-Montréal SDC</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- SLIDER ---------- */
+(function(){
+  const dotsWrap = document.getElementById('dots');
+  if (!dotsWrap) return;
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const thumbs = Array.from(document.querySelectorAll('.thumb'));
+  let i = 0, timer;
+
+  slides.forEach((_, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'dot-b' + (idx===0?' active':'');
+    b.addEventListener('click', ()=>go(idx));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function go(n){
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s,x)=>s.classList.toggle('active', x===i));
+    dots.forEach((d,x)=>d.classList.toggle('active', x===i));
+    thumbs.forEach((t,x)=>t.classList.toggle('active', x===i));
+    reset();
+  }
+  function next(){go(i+1)}
+  function prev(){go(i-1)}
+  function reset(){clearInterval(timer);timer=setInterval(next,5000)}
+
+  document.getElementById('next').addEventListener('click', next);
+  document.getElementById('prev').addEventListener('click', prev);
+  thumbs.forEach((t,idx)=>t.addEventListener('click',()=>go(idx)));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight')next();
+    if(e.key==='ArrowLeft')prev();
+  });
+  reset();
+})();
+
+/* ---------- SCROLL REVEAL ---------- */
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
