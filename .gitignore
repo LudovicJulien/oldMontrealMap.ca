@@ -37,3 +37,7 @@ wrangler.toml (optionnel, dépend si tu veux le versionner)
 *.tmp
 claude.md
 *.backup
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
