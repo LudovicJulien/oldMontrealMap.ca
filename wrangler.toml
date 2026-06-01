@@ -5,6 +5,8 @@ main = "src/index.js"
 
 [assets]
 directory = "."
+binding = "ASSETS"
+run_worker_first = true  
 
 [[routes]]
 pattern = "oldmontrealmap.ca/*"
@@ -21,8 +23,3 @@ zone_name = "cartevieuxmontreal.ca"
 [[routes]]
 pattern = "www.cartevieuxmontreal.ca/*"
 zone_name = "cartevieuxmontreal.ca"
-
-[[env.production.bindings]]
-binding = "ASSETS"
-type = "service"
-service = "oldmontrealmap"
