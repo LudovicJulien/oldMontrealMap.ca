@@ -110,8 +110,13 @@ export default {
       html = html.replaceAll(from, to);
     }
 
+
     const headers = new Headers(response.headers);
     headers.delete('content-length');
+    headers.set('X-Worker-Executed', `lang=${lang},replaced=true`);
     return new Response(html, { status: response.status, headers });
+    // const headers = new Headers(response.headers);
+    // headers.delete('content-length');
+    // return new Response(html, { status: response.status, headers });
   },
 };
