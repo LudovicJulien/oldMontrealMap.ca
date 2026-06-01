@@ -7,8 +7,16 @@ main = "src/index.js"
 directory = "."
 
 [[routes]]
+pattern = "oldmontrealmap.ca/*"
+zone_name = "oldmontrealmap.ca"
+
+[[routes]]
 pattern = "www.oldmontrealmap.ca/*"
 zone_name = "oldmontrealmap.ca"
+
+[[routes]]
+pattern = "cartevieuxmontreal.ca/*"
+zone_name = "cartevieuxmontreal.ca"
 
 [[routes]]
 pattern = "www.cartevieuxmontreal.ca/*"
