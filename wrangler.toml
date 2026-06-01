@@ -21,3 +21,8 @@ zone_name = "cartevieuxmontreal.ca"
 [[routes]]
 pattern = "www.cartevieuxmontreal.ca/*"
 zone_name = "cartevieuxmontreal.ca"
+
+[[env.production.bindings]]
+binding = "ASSETS"
+type = "service"
+service = "oldmontrealmap"
