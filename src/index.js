@@ -56,7 +56,6 @@ const FR = [
   ["Of trusted editions", "D'éditions de confiance"],
   ['30 yrs', '30 ans'],
   ['1 award', '1 prix'],
-  ['View the Gallery →', 'Voir la galerie →'],
   ['★ New for 2026', '★ Nouveau pour 2026'],
   ['alt="Map cover"', 'alt="Couverture de la carte"'],
 
