@@ -85,25 +85,29 @@ const FR = [
 ];
 
 export default {
-  async fetch(request) {
-    const hostname = new URL(request.url).hostname;
-    const lang = hostname.includes('cartevieuxmontreal') ? 'fr' : 'en';
+  async fetch(request, env) {
+    const url = new URL(request.url);
 
-    const response = await fetch(request);
+    // Block direct access to config/source files that land in the assets bucket
+    if (url.pathname === '/wrangler.toml' || url.pathname.startsWith('/src/')) {
+      return new Response('Not Found', { status: 404 });
+    }
+
+    const lang = url.hostname.includes('cartevieuxmontreal') ? 'fr' : 'en';
+
+    // env.ASSETS is the correct way to fetch static files in a Workers Assets setup
+    const response = await env.ASSETS.fetch(request);
 
     const contentType = response.headers.get('content-type') ?? '';
-    if (!contentType.includes('text/html')) return response;
+    if (!contentType.includes('text/html') || lang === 'en') return response;
 
     let html = await response.text();
-
-    if (lang === 'fr') {
-      for (const [from, to] of FR) {
-        html = html.replaceAll(from, to);
-      }
+    for (const [from, to] of FR) {
+      html = html.replaceAll(from, to);
     }
 
     const headers = new Headers(response.headers);
-    headers.delete('content-length'); // length changes after string replacements
+    headers.delete('content-length');
     return new Response(html, { status: response.status, headers });
   },
 };
