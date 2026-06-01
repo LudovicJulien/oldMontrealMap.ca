@@ -106,7 +106,7 @@
   .mobile-menu nav a:last-child{border-bottom:none}
   .mobile-menu nav a:hover{color:var(--blue)}
   .mobile-menu-actions{display:flex;gap:10px;margin-top:18px}
-  @media(max-width:780px){
+  @media(max-width:850px){
     .navlinks{display:none}
     .nav-actions{display:none}
     .hamburger{display:flex}
@@ -303,6 +303,24 @@
   .foot-col a:hover{color:#fff}
   .copyright{padding-top:24px;font-size:13px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+    max-width:880px;margin:0 auto;
+  }
+  .gallery-item{
+    border-radius:18px;overflow:hidden;aspect-ratio:1/1;
+    box-shadow:0 20px 50px -20px rgba(6,46,74,.35);position:relative;
+  }
+  .gallery-item img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .5s ease;display:block;
+  }
+  .gallery-item:hover img{transform:scale(1.06)}
+  @media(max-width:600px){
+    .gallery-grid{grid-template-columns:1fr;max-width:440px}
+  }
+
   /* reveal animation */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
@@ -318,7 +336,7 @@
       <div>OLD MONTRÉAL<small>Official Map™ 2026</small></div>
     </div>
     <nav class="navlinks">
-      <!-- <a href="#gallery">Gallery</a> -->
+      <a href="#gallery">Gallery</a>
       <a href="#features">What's Inside</a>
       <a href="#paper">Paper Version</a>
       <a href="#download">View the Map</a>
@@ -358,7 +376,7 @@
       <p class="lede">A unique, comprehensive map of every tourist attraction in the historic quarter — complete with tappable links, a night-lights walking circuit, and everything worth seeing along the way.</p>
       <div class="hero-cta">
         <a href="#download" class="btn gold">View the Map</a>
-        <!-- <a href="#gallery" class="btn ghost">View the Gallery →</a> -->
+        <a href="#gallery" class="btn ghost">View the Gallery →</a>
       </div>
       <div class="hero-stats">
         <div class="stat"><div class="n">400K+</div><div class="l">Copies distributed</div></div>
@@ -384,7 +402,42 @@
   </div>
 </section>
 
-<!-- SLIDER / GALLERY — section masquée en attendant les images -->
+<!-- GALLERY -->
+<section class="section tint" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Gallery</span>
+      <h2>Spotted throughout Old Montréal</h2>
+      <p>Find the official map on display stands across the historic quarter — at hotels, tourist centres and key landmarks.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <picture>
+          <source srcset="./images/presentoir_1.webp" type="image/webp">
+          <img src="./images/presentoir_1.jpg" alt="Official map display stand in Old Montréal" loading="lazy" width="800" height="800">
+        </picture>
+      </div>
+      <div class="gallery-item reveal">
+        <picture>
+          <source srcset="./images/presentoir_2.webp" type="image/webp">
+          <img src="./images/presentoir_2.jpg" alt="Official map display stand in Old Montréal" loading="lazy" width="800" height="800">
+        </picture>
+      </div>
+      <div class="gallery-item reveal">
+        <picture>
+          <source srcset="./images/presentoir_3.webp" type="image/webp">
+          <img src="./images/presentoir_3.jpg" alt="Official map display stand in Old Montréal" loading="lazy" width="800" height="800">
+        </picture>
+      </div>
+      <div class="gallery-item reveal">
+        <picture>
+          <source srcset="./images/presentoir_4.webp" type="image/webp">
+          <img src="./images/presentoir_4.jpg" alt="Official map display stand in Old Montréal" loading="lazy" width="800" height="800">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FEATURES -->
 <section class="section" id="features">
@@ -477,7 +530,7 @@
       </div>
       <div class="foot-col">
         <h2>Explore</h2>
-        <!-- <a href="#gallery">Display Gallery</a> -->
+        <a href="#gallery">Gallery</a>
         <a href="#features">What's Inside</a>
         <a href="#paper">Paper Version</a>
         <a href="#download">View the Map</a>

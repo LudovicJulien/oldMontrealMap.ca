@@ -19,6 +19,7 @@ const FR = [
   ['Official Map™ 2026', 'Carte officielle™ 2026'],
 
   // ── NAV ──────────────────────────────────────────────────────────────────
+  ['>Gallery</a>', '>Galerie</a>'],
   ["What's Inside", 'Ce qui est inclus'],
   ['Paper Version', 'Version papier'],
   ['View the Map', 'Voir la carte'],
@@ -33,8 +34,16 @@ const FR = [
   ["Of trusted editions", "D'éditions de confiance"],
   ['30 yrs', '30 ans'],
   ['1 award', '1 prix'],
+  ['View the Gallery →', 'Voir la galerie →'],
   ['★ New for 2026', '★ Nouveau pour 2026'],
   ['alt="Map cover"', 'alt="Couverture de la carte"'],
+
+  // ── GALLERY ──────────────────────────────────────────────────────────────
+  ['<span class="dot"></span>Gallery', '<span class="dot"></span>Galerie'],
+  ['Spotted throughout Old Montréal', 'Aperçu dans tout le Vieux-Montréal'],
+  ['Find the official map on display stands across the historic quarter — at hotels, tourist centres and key landmarks.',
+   'Retrouvez la carte officielle sur des présentoirs dans tout le quartier historique — dans les hôtels, les centres touristiques et les principaux lieux emblématiques.'],
+  ['alt="Official map display stand in Old Montréal"', 'alt="Présentoir de la carte officielle dans le Vieux-Montréal"'],
 
   // ── FEATURES ─────────────────────────────────────────────────────────────
   ["What's inside", 'Ce qui est inclus'],
