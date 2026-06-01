@@ -78,7 +78,39 @@
   .btn.gold:hover{background:var(--gold-deep)}
   .btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--line)}
   .btn.ghost:hover{border-color:var(--blue);background:var(--mist);transform:translateY(-1px);box-shadow:none}
-  @media(max-width:780px){.navlinks{display:none}}
+  .nav-actions{display:flex;align-items:center;gap:10px}
+  .hamburger{
+    display:none;background:none;border:none;cursor:pointer;padding:8px;
+    color:var(--ink);flex-direction:column;justify-content:center;align-items:center;gap:5px;
+  }
+  .hamburger span{
+    display:block;width:22px;height:2px;background:currentColor;border-radius:2px;
+    transition:transform .3s,opacity .3s;transform-origin:center;
+  }
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mobile-menu{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    background:rgba(255,255,255,.97);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 12px 32px -8px rgba(6,46,74,.12);
+  }
+  .mobile-menu.open{display:block}
+  .mobile-menu-inner{padding:16px 28px 24px}
+  .mobile-menu nav{display:flex;flex-direction:column}
+  .mobile-menu nav a{
+    font-size:16px;font-weight:600;color:var(--muted);
+    padding:13px 0;border-bottom:1px solid var(--line);transition:color .2s;
+  }
+  .mobile-menu nav a:last-child{border-bottom:none}
+  .mobile-menu nav a:hover{color:var(--blue)}
+  .mobile-menu-actions{display:flex;gap:10px;margin-top:18px}
+  @media(max-width:780px){
+    .navlinks{display:none}
+    .nav-actions{display:none}
+    .hamburger{display:flex}
+  }
   .lang-btn{padding:9px 16px;font-size:13px;letter-spacing:.5px;font-weight:700}
 
   /* ---------- HERO ---------- */
@@ -275,6 +307,7 @@
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
 </style>
+<script>if(location.hostname.includes('cartevieuxmontreal')&&document.documentElement.lang==='en')document.documentElement.style.visibility='hidden'</script>
 </head>
 <body>
 
@@ -290,9 +323,25 @@
       <a href="#paper">Paper Version</a>
       <a href="#download">View the Map</a>
     </nav>
-    <div style="display:flex;align-items:center;gap:10px">
-      <a href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">🌐 FR</a>
+    <div class="nav-actions">
+      <a href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">FR</a>
       <a href="#download" class="btn">View the Map</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+    <div class="mobile-menu-inner">
+      <nav>
+        <a href="#features">What's Inside</a>
+        <a href="#paper">Paper Version</a>
+        <a href="#download">View the Map</a>
+      </nav>
+      <div class="mobile-menu-actions">
+        <a href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">FR</a>
+        <a href="#download" class="btn">View the Map</a>
+      </div>
     </div>
   </div>
 </header>
@@ -487,6 +536,22 @@
     if(e.key==='ArrowLeft')prev();
   });
   reset();
+})();
+
+/* ---------- HAMBURGER MENU ---------- */
+(function(){
+  const btn=document.getElementById('hamburger');
+  const menu=document.getElementById('mobile-menu');
+  btn.addEventListener('click',()=>{
+    const open=menu.classList.toggle('open');
+    btn.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open);
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  }));
 })();
 
 /* ---------- SCROLL REVEAL ---------- */

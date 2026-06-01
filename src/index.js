@@ -11,8 +11,8 @@ const FR = [
    '<link rel="canonical" href="https://www.cartevieuxmontreal.ca/">'],
 
   // ── LANG SWITCHER ────────────────────────────────────────────────────────
-  ['href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">🌐 FR',
-   'href="https://www.oldmontrealmap.ca/" class="btn ghost lang-btn" hreflang="en" title="English version">🌐 EN'],
+  ['href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">FR',
+   'href="https://www.oldmontrealmap.ca/" class="btn ghost lang-btn" hreflang="en" title="English version">EN'],
 
   // ── HEADER / BRAND ───────────────────────────────────────────────────────
   ['OLD MONTRÉAL', 'VIEUX-MONTRÉAL'],
