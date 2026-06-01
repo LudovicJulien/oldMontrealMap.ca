@@ -75,8 +75,8 @@ const FR = [
   ['View the digital map', 'Voir la carte numérique'],
   ['Open the full official map directly in your browser and start planning your route through the historic quarter.',
    "Ouvrez la carte officielle complète directement dans votre navigateur et commencez à planifier votre itinéraire dans le quartier historique."],
-  ['English Map', 'Carte en anglais'],
-  ['French Map', 'Carte en français'],
+  ['href="mapeng.pdf"', 'href="mapfr.pdf"'],
+  ['English Map', 'Carte en français'],
 
   // ── FOOTER ───────────────────────────────────────────────────────────────
   // Long string first, short string (subset) second
