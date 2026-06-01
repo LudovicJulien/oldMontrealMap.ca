@@ -31,6 +31,8 @@ const FR = [
    "Une carte unique et complète de toutes les attractions touristiques du quartier historique — avec des liens interactifs, un circuit nocturne illuminé et tout ce qui vaut la peine d'être vu en chemin."],
   ['Copies distributed', 'Copies distribuées'],
   ["Of trusted editions", "D'éditions de confiance"],
+  ['30 yrs', '30 ans'],
+  ['1 award', '1 prix'],
   ['★ New for 2026', '★ Nouveau pour 2026'],
   ['alt="Map cover"', 'alt="Couverture de la carte"'],
 
@@ -61,8 +63,9 @@ const FR = [
   // Full paragraph first so its sub-strings don't collide with chip replacements below
   ['Readily available throughout Old Montréal — at the Tourist Information Centre in Place Jacques-Cartier, Bonsecours Market, the Notre-Dame Basilica, the Palais des Congrès reception desk, and with most hotel concierges.',
    "Disponible partout dans le Vieux-Montréal — au Bureau d'information touristique de la Place Jacques-Cartier, au Marché Bonsecours, à la Basilique Notre-Dame, à l'accueil du Palais des Congrès et auprès des concierges d'hôtels."],
-  ['Created over 25 years ago, the map won a Ulysse award as part of the Grands prix du tourisme québécois.',
-   'Créée il y a plus de 25 ans, la carte a remporté un prix Ulysse dans le cadre des Grands prix du tourisme québécois.'],
+  ['Ulysse Award', 'Prix Ulysse'],
+  ['Created over 30 years ago, the map won a Ulysse award as part of the Grands prix du tourisme québécois.',
+   'Créée il y a plus de 30 ans, la carte a remporté un prix Ulysse dans le cadre des Grands prix du tourisme québécois.'],
   // Location chips
   ['Bonsecours Market', 'Marché Bonsecours'],
   ['Notre-Dame Basilica', 'Basilique Notre-Dame'],
@@ -77,8 +80,8 @@ const FR = [
 
   // ── FOOTER ───────────────────────────────────────────────────────────────
   // Long string first, short string (subset) second
-  ['In partnership with Vieux-Montréal SDC. The trusted guide to the historic quarter for over 25 years.',
-   'En partenariat avec la SDC Vieux-Montréal. Le guide de référence du quartier historique depuis plus de 25 ans.'],
+  ['In partnership with Vieux-Montréal SDC. The trusted guide to the historic quarter for over 30 years.',
+   'En partenariat avec la SDC Vieux-Montréal. Le guide de référence du quartier historique depuis plus de 30 ans.'],
   ['In partnership with Vieux-Montréal SDC', 'En partenariat avec la SDC Vieux-Montréal'],
   // Footer column headings — matched with surrounding tags to avoid false positives
   ['>Explore</h2>', '>Explorer</h2>'],
