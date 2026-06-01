@@ -1,6 +1,16 @@
 name = "oldmontrealmap"
 account_id = "3da170f83992089a9eebdd5bee516d04"
 compatibility_date = "2025-01-01"
+main = "src/index.js"
 
 [assets]
 directory = "."
+exclude = ["wrangler.toml", "src/**"]
+
+[[routes]]
+pattern = "www.oldmontrealmap.ca/*"
+zone_name = "oldmontrealmap.ca"
+
+[[routes]]
+pattern = "www.cartevieuxmontreal.ca/*"
+zone_name = "cartevieuxmontreal.ca"
