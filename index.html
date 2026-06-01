@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Free official walking map of Old Montréal 2026 — download in PDF, discover historic landmarks, restaurants & must-see streets in Vieux-Montréal.">
 <title>Official Map — Old Montréal 2026</title>
-<link rel="prefetch" href="mapeng.pdf">
-<link rel="prefetch" href="mapfr.pdf">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/fraunces/v38/6NUs8FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChJdt9hFwpX9W37ll9_mv0iQg.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeA.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/archivo/v25/k3kPo8UDI-1M0wlSV9XAw6lQkqWY8Q82sLydOxI.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap"></noscript>
 <style>
@@ -289,7 +290,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
-    <div class="hero-copy reveal">
+    <div class="hero-copy">
       <span class="eyebrow"><span class="dot"></span>The Official Map · Edition 2026</span>
       <h1 class="title">Old <em>Montréal</em><span class="year">— 2026 EDITION</span></h1>
       <p class="lede">A unique, comprehensive map of every tourist attraction in the historic quarter — complete with tappable links, a night-lights walking circuit, and everything worth seeing along the way.</p>
@@ -481,6 +482,22 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+
+/* ---------- LAZY PDF PREFETCH ---------- */
+(function(){
+  const prefetched=new Set();
+  function prefetch(url){
+    if(prefetched.has(url))return;
+    prefetched.add(url);
+    const l=document.createElement('link');
+    l.rel='prefetch';l.href=url;
+    document.head.appendChild(l);
+  }
+  document.querySelectorAll('a[href$=".pdf"]').forEach(a=>{
+    a.addEventListener('mouseenter',()=>prefetch(a.href),{once:true});
+    a.addEventListener('touchstart',()=>prefetch(a.href),{once:true,passive:true});
+  });
 })();
 </script>
 </body>
