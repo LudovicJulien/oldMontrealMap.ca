@@ -6,9 +6,31 @@ const FR = [
    '<title>Carte officielle — Vieux-Montréal 2026</title>'],
   ['Free official walking map of Old Montréal 2026 — download in PDF, discover historic landmarks, restaurants & must-see streets in Vieux-Montréal.',
    'Carte officielle gratuite du Vieux-Montréal 2026 — téléchargez en PDF, découvrez les monuments historiques, restaurants & rues incontournables de Vieux-Montréal.'],
-  // hreflang canonical (injected into index.html — see below)
+  // hreflang canonical
   ['<link rel="canonical" href="https://www.oldmontrealmap.ca/">',
    '<link rel="canonical" href="https://www.cartevieuxmontreal.ca/">'],
+
+  // ── OPEN GRAPH / TWITTER / GEO ──────────────────────────────────────────
+  ['content="https://www.oldmontrealmap.ca/"', 'content="https://www.cartevieuxmontreal.ca/"'],
+  ['content="Official Map — Old Montréal 2026"', 'content="Carte officielle — Vieux-Montréal 2026"'],
+  ['content="Official Map of Old Montréal 2026"', 'content="Carte officielle du Vieux-Montréal 2026"'],
+  ['property="og:locale" content="en_CA"', 'property="og:locale" content="fr_CA"'],
+  ['property="og:locale:alternate" content="fr_CA"', 'property="og:locale:alternate" content="en_CA"'],
+  ['content="Old Montréal Official Map™"', 'content="Carte officielle Vieux-Montréal™"'],
+  ['content="https://www.oldmontrealmap.ca/images/map-cover.webp"', 'content="https://www.cartevieuxmontreal.ca/images/carte-cover.webp"'],
+  ['content="Old Montréal, Québec"', 'content="Vieux-Montréal, Québec"'],
+
+  // ── JSON-LD ──────────────────────────────────────────────────────────────
+  ['"@id": "https://www.oldmontrealmap.ca/#website"', '"@id": "https://www.cartevieuxmontreal.ca/#website"'],
+  ['"url": "https://www.oldmontrealmap.ca/"', '"url": "https://www.cartevieuxmontreal.ca/"'],
+  ['"name": "Old Montréal Official Map™ 2026"', '"name": "Carte officielle Vieux-Montréal™ 2026"'],
+  ['"name": "Official Tourist Map of Old Montréal 2026"', '"name": "Carte touristique officielle du Vieux-Montréal 2026"'],
+  ['"inLanguage": "en"', '"inLanguage": "fr"'],
+  ['"name": "Old Montréal",', '"name": "Vieux-Montréal",'],
+  ['"alternateName": "Vieux-Montréal",', '"alternateName": "Old Montréal",'],
+  ['"publisher": {"@id": "https://www.oldmontrealmap.ca/#organization"}', '"publisher": {"@id": "https://www.cartevieuxmontreal.ca/#organization"}'],
+  ['"@id": "https://www.oldmontrealmap.ca/#organization"', '"@id": "https://www.cartevieuxmontreal.ca/#organization"'],
+  ['"image": "https://www.oldmontrealmap.ca/images/map-cover.webp"', '"image": "https://www.cartevieuxmontreal.ca/images/carte-cover.webp"'],
 
   // ── LANG SWITCHER ────────────────────────────────────────────────────────
   ['href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">FR',
@@ -110,6 +132,22 @@ export default {
     }
 
     const lang = url.hostname.includes('cartevieuxmontreal') ? 'fr' : 'en';
+
+    // Serve FR-specific sitemap and robots.txt
+    if (lang === 'fr') {
+      if (url.pathname === '/sitemap.xml') {
+        return new Response(
+          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-06-01</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/mapfr.pdf</loc>\n    <lastmod>2026-06-01</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
+          { headers: { 'content-type': 'application/xml; charset=utf-8' } }
+        );
+      }
+      if (url.pathname === '/robots.txt') {
+        return new Response(
+          'User-agent: *\nAllow: /\n\nSitemap: https://www.cartevieuxmontreal.ca/sitemap.xml\n',
+          { headers: { 'content-type': 'text/plain; charset=utf-8' } }
+        );
+      }
+    }
 
     // env.ASSETS is the correct way to fetch static files in a Workers Assets setup
     const response = await env.ASSETS.fetch(request);
