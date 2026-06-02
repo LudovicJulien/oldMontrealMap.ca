@@ -52,8 +52,8 @@ const FR = [
   ['Every attraction in the historic quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.',
    'Toutes les attractions du quartier historique sur un seul dépliant. PDF gratuit avec un circuit nocturne illuminé exclusif.'],
   ['Copies distributed', 'Copies distribuées'],
-  ["Of trusted editions", "D'éditions de confiance"],
-  ['30 yrs', '30 ans'],
+  ['Trusted editions', "Éditions de confiance"],
+  ['Since 1995', 'Depuis 1995'],
   ['Québec Tourism Award', 'Prix du tourisme québécois'],
   ['alt="Map cover"', 'alt="Couverture de la carte"'],
 
@@ -100,9 +100,9 @@ const FR = [
   ['Hotel concierges', "Concierges d'hôtels"],
 
   // ── DOWNLOAD / VIEW MAP ───────────────────────────────────────────────────
-  ['View the digital map', 'Voir la carte numérique'],
-  ['Open the full official map directly in your browser and start planning your route through the historic quarter.',
-   "Ouvrez la carte officielle complète directement dans votre navigateur et commencez à planifier votre itinéraire dans le quartier historique."],
+  ['The full quarter, on one page', 'Tout le quartier, en un seul dépliant'],
+  ['The same map found at every hotel desk in the quarter — as a free PDF, ready before you arrive.',
+   'La même carte disponible dans tous les hôtels du quartier — en PDF gratuit, à consulter avant même d\'arriver.'],
   ['href="mapeng.pdf"', 'href="mapfr.pdf"'],
   ['English Map', 'Carte en français'],
 
