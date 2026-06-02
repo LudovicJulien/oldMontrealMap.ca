@@ -301,82 +301,51 @@
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
   .reveal.in{opacity:1;transform:none}
 
-  /* sticky mobile CTA — liquid glass float */
+  /* sticky mobile CTA — liquid glass */
   #sticky-bar{
     display:none;
     position:fixed;
-    bottom:24px;
+    bottom:20px;
     left:50%;
     z-index:90;
-    width:calc(100% - 32px);
-    max-width:390px;
-    padding:8px;
-    background:rgba(235,246,255,.52);
-    backdrop-filter:blur(36px) saturate(190%) brightness(1.04);
-    -webkit-backdrop-filter:blur(36px) saturate(190%) brightness(1.04);
-    border:1px solid rgba(255,255,255,.78);
-    border-bottom-color:rgba(200,225,245,.5);
-    border-radius:22px;
+    width:calc(100% - 40px);
+    max-width:340px;
+    padding:5px;
+    background:rgba(230,243,255,.48);
+    backdrop-filter:blur(28px) saturate(180%);
+    -webkit-backdrop-filter:blur(28px) saturate(180%);
+    border:1px solid rgba(255,255,255,.72);
+    border-bottom-color:rgba(180,215,240,.4);
+    border-radius:16px;
     box-shadow:
-      0 16px 48px rgba(6,46,74,.22),
-      0 4px 14px rgba(6,46,74,.10),
-      inset 0 1.5px 0 rgba(255,255,255,.95),
-      inset 0 -1px 0 rgba(255,255,255,.25);
-    transform:translateX(-50%) translateY(calc(100% + 56px));
+      0 10px 32px rgba(6,46,74,.18),
+      0 2px 8px rgba(6,46,74,.07),
+      inset 0 1px 0 rgba(255,255,255,.9);
+    transform:translateX(-50%) translateY(calc(100% + 44px));
     opacity:0;
-    transition:transform .52s cubic-bezier(.34,1.46,.64,1),opacity .32s ease;
+    transition:transform .46s cubic-bezier(.34,1.46,.64,1),opacity .28s ease;
   }
   #sticky-bar.visible{opacity:1;transform:translateX(-50%) translateY(0)}
   @media(max-width:767px){#sticky-bar{display:block}}
   @supports(padding:max(0px)){
-    #sticky-bar{bottom:max(24px,calc(env(safe-area-inset-bottom) + 14px))}
+    #sticky-bar{bottom:max(20px,calc(env(safe-area-inset-bottom) + 12px))}
   }
   .sb-pill{
-    display:flex;align-items:center;justify-content:space-between;
-    gap:12px;
-    background:linear-gradient(145deg,#fce868 0%,#f5c518 48%,#dfa000 100%);
-    color:var(--ink);
-    padding:13px 18px 13px 20px;
-    border-radius:15px;
-    box-shadow:
-      0 4px 24px rgba(245,197,24,.48),
-      0 1px 4px rgba(0,0,0,.10),
-      inset 0 1.5px 0 rgba(255,255,255,.48);
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--blue);
+    color:#fff;
+    padding:12px 22px;
+    border-radius:12px;
+    font-family:var(--sans);font-weight:700;font-size:15px;
+    letter-spacing:.015em;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
     position:relative;overflow:hidden;
-    transition:transform .14s ease,box-shadow .14s ease;
+    transition:background .15s ease,transform .12s ease;
   }
-  .sb-pill::before{
-    content:'';position:absolute;
-    top:0;left:0;right:0;height:50%;
-    background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,transparent 100%);
-    border-radius:15px 15px 0 0;pointer-events:none;
-  }
-  .sb-pill::after{
-    content:'';position:absolute;
-    top:0;left:-80%;width:55%;height:100%;
-    background:linear-gradient(105deg,transparent,rgba(255,255,255,.3),transparent);
-    transform:skewX(-18deg);
-    transition:left .55s ease;pointer-events:none;
-  }
-  .sb-pill:hover::after{left:120%}
-  .sb-pill:active{transform:scale(.97);box-shadow:0 2px 10px rgba(245,197,24,.35),inset 0 1px 0 rgba(255,255,255,.3)}
-  .sb-left{display:flex;flex-direction:column;gap:1px}
-  .sb-badge{
-    font-family:var(--sans);font-size:9.5px;font-weight:700;
-    letter-spacing:.13em;text-transform:uppercase;
-    color:rgba(26,42,53,.52);line-height:1;
-  }
-  .sb-label{
-    font-family:var(--sans);font-weight:800;font-size:15.5px;
-    letter-spacing:.01em;color:var(--ink);line-height:1.15;
-  }
-  .sb-icon{
-    width:36px;height:36px;flex-shrink:0;
-    background:rgba(26,42,53,.10);
-    border-radius:10px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:18px;line-height:1;
-  }
+  .sb-pill:hover{background:var(--blue-deep)}
+  .sb-pill:active{transform:scale(.97)}
+  .sb-arr{display:inline-block;transition:transform .2s ease}
+  .sb-pill:hover .sb-arr{transform:translateX(3px)}
 </style>
 <script type="application/ld+json">
 {
@@ -659,13 +628,7 @@
 </footer>
 
 <div id="sticky-bar" aria-hidden="true">
-  <a href="#download" class="sb-pill">
-    <span class="sb-left">
-      <span class="sb-badge">Free · PDF</span>
-      <span class="sb-label">View the Map →</span>
-    </span>
-    <span class="sb-icon">🗺</span>
-  </a>
+  <a href="#download" class="sb-pill">View the Map <span class="sb-arr">→</span></a>
 </div>
 
 <script>

@@ -45,7 +45,6 @@ const FR = [
   ["What's Inside", 'Ce qui est inclus'],
   ['Paper Version', 'Version papier'],
   ['View the Map', 'Voir la carte'],
-  ['Free · PDF', 'Gratuit · PDF'],
 
   // ── HERO ─────────────────────────────────────────────────────────────────
   ['The Official Map · Edition 2026', 'La carte officielle · Édition 2026'],
