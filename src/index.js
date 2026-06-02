@@ -66,7 +66,7 @@ const FR = [
 
   // ── FEATURES ─────────────────────────────────────────────────────────────
   ["What's inside", 'Ce qui est inclus'],
-  ['Everything you need to explore Old Montréal', "Tout ce qu'il faut pour explorer le Vieux-Montréal"],
+  ['Six layers of the historic quarter', 'Six facettes du quartier historique'],
   ['Heritage & Cultural Attractions', 'Patrimoine & attraits culturels'],
   ['Every museum, church and gallery in the historic quarter, with current hours and admission.',
    "Chaque musée, église et galerie du quartier historique, avec les horaires et tarifs d'entrée à jour."],

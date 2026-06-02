@@ -54,6 +54,9 @@
     --muted:#5a7385;
     --sans:'Archivo',sans-serif;
     --serif:'Fraunces',serif;
+    --r-s:6px;
+    --r-m:18px;
+    --r-pill:100px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -79,7 +82,7 @@
   .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
   .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.5px}
   .brand .mark{
-    width:34px;height:34px;border-radius:9px;
+    width:34px;height:34px;border-radius:var(--r-s);
     background:linear-gradient(135deg,var(--blue),var(--blue-deep));
     display:grid;place-items:center;color:#fff;font-family:var(--serif);font-style:italic;font-size:20px;
   }
@@ -88,7 +91,7 @@
   .navlinks a{transition:color .2s}
   .navlinks a:hover{color:var(--blue)}
   .btn{
-    background:var(--blue);color:#fff;padding:11px 22px;border-radius:100px;
+    background:var(--blue);color:#fff;padding:11px 22px;border-radius:var(--r-pill);
     font-weight:700;font-size:14px;border:none;cursor:pointer;transition:.25s;
     display:inline-flex;align-items:center;gap:8px;
   }
@@ -143,7 +146,7 @@
     display:inline-flex;align-items:center;gap:9px;
     font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
     color:var(--blue-deep);background:var(--mist);border:1px solid var(--line);
-    padding:7px 15px;border-radius:100px;margin-bottom:24px;
+    padding:7px 15px;border-radius:var(--r-pill);margin-bottom:24px;
   }
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(245,197,24,.25)}
   h1.title{font-family:var(--serif);font-weight:600;font-size:clamp(46px,6vw,82px);line-height:.95;letter-spacing:-1.5px;color:var(--blue-ink)}
@@ -163,7 +166,7 @@
   }
   .fold{
     position:relative;flex-shrink:0;
-    border-radius:18px;overflow:hidden;
+    border-radius:var(--r-m);overflow:hidden;
     box-shadow:0 40px 80px -30px rgba(6,46,74,.45);
   }
   .fold img{width:100%;height:auto;display:block}
@@ -212,7 +215,7 @@
 
   .slider{position:relative;max-width:1000px;margin:0 auto}
   .slides{
-    position:relative;border-radius:24px;overflow:hidden;
+    position:relative;border-radius:var(--r-m);overflow:hidden;
     box-shadow:0 30px 70px -34px rgba(6,46,74,.5);
     aspect-ratio:16/9;background:var(--blue-ink);
   }
@@ -241,10 +244,10 @@
 
   .dots{display:flex;justify-content:center;gap:10px;margin-top:24px}
   .dot-b{width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;background:var(--line);transition:.3s}
-  .dot-b.active{background:var(--blue);width:30px;border-radius:100px}
+  .dot-b.active{background:var(--blue);width:30px;border-radius:var(--r-pill)}
 
   .thumbs{display:flex;justify-content:center;gap:12px;margin-top:24px;flex-wrap:wrap}
-  .thumb{width:88px;height:58px;border-radius:10px;overflow:hidden;cursor:pointer;opacity:.5;transition:.3s;border:2px solid transparent}
+  .thumb{width:88px;height:58px;border-radius:var(--r-s);overflow:hidden;cursor:pointer;opacity:.5;transition:.3s;border:2px solid transparent}
   .thumb.active{opacity:1;border-color:var(--blue)}
   .thumb .ph{width:100%;height:100%}
   .thumb .ph::after{display:none}
@@ -252,12 +255,12 @@
   /* ---------- FEATURES ---------- */
   .features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .card{
-    background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:34px 30px;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m);padding:34px 30px;
     transition:.3s;position:relative;overflow:hidden;
   }
   .card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(6,46,74,.35);border-color:transparent}
   .card .ic{
-    width:54px;height:54px;border-radius:14px;display:grid;place-items:center;margin-bottom:22px;
+    width:54px;height:54px;border-radius:var(--r-m);display:grid;place-items:center;margin-bottom:22px;
     background:var(--mist);color:var(--blue);
   }
   .card .ic svg{width:26px;height:26px;flex-shrink:0}
@@ -279,26 +282,26 @@
 
   /* ---------- PAPER VERSION ---------- */
   .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  .split-art{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(6,46,74,.4)}
+  .split-art{position:relative;border-radius:var(--r-m);overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(6,46,74,.4)}
   .split-art .ph{width:100%;height:100%}
   .split h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,44px);color:var(--blue-ink);letter-spacing:-.5px;margin-bottom:20px;line-height:1.05}
   .split p{color:var(--muted);font-size:16px;margin-bottom:16px}
   .award{
     display:inline-flex;align-items:center;gap:12px;margin-top:18px;
-    background:var(--mist);border:1px solid var(--line);border-radius:14px;padding:14px 18px;
+    background:var(--mist);border:1px solid var(--line);border-radius:var(--r-m);padding:14px 18px;
   }
   .award .b{display:grid;place-items:center;color:var(--gold-deep)}
   .award .b svg{width:26px;height:26px}
   .award span{font-size:14px;color:var(--ink);font-weight:600}
   .award span b{color:var(--blue);display:block;font-weight:800}
   .where{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
-  .where .chip{font-size:13px;font-weight:600;color:var(--blue-deep);background:var(--mist);border:1px solid var(--line);padding:8px 14px;border-radius:100px}
+  .where .chip{font-size:13px;font-weight:600;color:var(--blue-deep);background:var(--mist);border:1px solid var(--line);padding:8px 14px;border-radius:var(--r-pill)}
   @media(max-width:880px){.split{grid-template-columns:1fr;gap:40px}}
 
   /* ---------- DOWNLOAD CTA ---------- */
   .download{
     background:linear-gradient(135deg,var(--blue),var(--blue-ink));
-    border-radius:28px;padding:60px;text-align:center;color:#fff;position:relative;overflow:hidden;
+    border-radius:var(--r-m);padding:60px;text-align:center;color:#fff;position:relative;overflow:hidden;
   }
   .download::before{content:"";position:absolute;inset:0;
     background:radial-gradient(500px 300px at 90% 0%,rgba(245,197,24,.25),transparent 60%);}
@@ -308,10 +311,10 @@
   .dl{
     display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.12);
     border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);
-    padding:16px 26px;border-radius:14px;font-weight:700;transition:.25s;cursor:pointer;
+    padding:16px 26px;border-radius:var(--r-m);font-weight:700;transition:.25s;cursor:pointer;
   }
   .dl:hover{background:#fff;color:var(--blue-ink);transform:translateY(-2px)}
-  .dl .tag{background:var(--gold);color:var(--blue-ink);font-size:11px;font-weight:800;padding:4px 8px;border-radius:6px}
+  .dl .tag{background:var(--gold);color:var(--blue-ink);font-size:11px;font-weight:800;padding:4px 8px;border-radius:var(--r-s)}
 
   /* ---------- FOOTER ---------- */
   footer{background:var(--blue-ink);color:#fff;padding:54px 0 30px;margin-top:10px}
@@ -329,7 +332,7 @@
     max-width:880px;margin:0 auto;
   }
   .gallery-item{
-    border-radius:18px;overflow:hidden;aspect-ratio:1/1;
+    border-radius:var(--r-m);overflow:hidden;aspect-ratio:1/1;
     box-shadow:0 20px 50px -20px rgba(6,46,74,.35);position:relative;
   }
   .gallery-item img{
@@ -512,7 +515,7 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow"><span class="dot"></span>What's inside</span>
-      <h2>Everything you need to explore Old Montréal</h2>
+      <h2>Six layers of the historic quarter</h2>
     </div>
     <div class="features">
       <div class="card reveal">
