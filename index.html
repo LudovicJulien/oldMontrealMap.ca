@@ -300,6 +300,83 @@
   /* reveal animation */
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
   .reveal.in{opacity:1;transform:none}
+
+  /* sticky mobile CTA — liquid glass float */
+  #sticky-bar{
+    display:none;
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    z-index:90;
+    width:calc(100% - 32px);
+    max-width:390px;
+    padding:8px;
+    background:rgba(235,246,255,.52);
+    backdrop-filter:blur(36px) saturate(190%) brightness(1.04);
+    -webkit-backdrop-filter:blur(36px) saturate(190%) brightness(1.04);
+    border:1px solid rgba(255,255,255,.78);
+    border-bottom-color:rgba(200,225,245,.5);
+    border-radius:22px;
+    box-shadow:
+      0 16px 48px rgba(6,46,74,.22),
+      0 4px 14px rgba(6,46,74,.10),
+      inset 0 1.5px 0 rgba(255,255,255,.95),
+      inset 0 -1px 0 rgba(255,255,255,.25);
+    transform:translateX(-50%) translateY(calc(100% + 56px));
+    opacity:0;
+    transition:transform .52s cubic-bezier(.34,1.46,.64,1),opacity .32s ease;
+  }
+  #sticky-bar.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media(max-width:767px){#sticky-bar{display:block}}
+  @supports(padding:max(0px)){
+    #sticky-bar{bottom:max(24px,calc(env(safe-area-inset-bottom) + 14px))}
+  }
+  .sb-pill{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;
+    background:linear-gradient(145deg,#fce868 0%,#f5c518 48%,#dfa000 100%);
+    color:var(--ink);
+    padding:13px 18px 13px 20px;
+    border-radius:15px;
+    box-shadow:
+      0 4px 24px rgba(245,197,24,.48),
+      0 1px 4px rgba(0,0,0,.10),
+      inset 0 1.5px 0 rgba(255,255,255,.48);
+    position:relative;overflow:hidden;
+    transition:transform .14s ease,box-shadow .14s ease;
+  }
+  .sb-pill::before{
+    content:'';position:absolute;
+    top:0;left:0;right:0;height:50%;
+    background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,transparent 100%);
+    border-radius:15px 15px 0 0;pointer-events:none;
+  }
+  .sb-pill::after{
+    content:'';position:absolute;
+    top:0;left:-80%;width:55%;height:100%;
+    background:linear-gradient(105deg,transparent,rgba(255,255,255,.3),transparent);
+    transform:skewX(-18deg);
+    transition:left .55s ease;pointer-events:none;
+  }
+  .sb-pill:hover::after{left:120%}
+  .sb-pill:active{transform:scale(.97);box-shadow:0 2px 10px rgba(245,197,24,.35),inset 0 1px 0 rgba(255,255,255,.3)}
+  .sb-left{display:flex;flex-direction:column;gap:1px}
+  .sb-badge{
+    font-family:var(--sans);font-size:9.5px;font-weight:700;
+    letter-spacing:.13em;text-transform:uppercase;
+    color:rgba(26,42,53,.52);line-height:1;
+  }
+  .sb-label{
+    font-family:var(--sans);font-weight:800;font-size:15.5px;
+    letter-spacing:.01em;color:var(--ink);line-height:1.15;
+  }
+  .sb-icon{
+    width:36px;height:36px;flex-shrink:0;
+    background:rgba(26,42,53,.10);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;line-height:1;
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -407,7 +484,7 @@
       <div class="hero-stats">
         <div class="stat"><div class="n">400K+</div><div class="l">Copies distributed</div></div>
         <div class="stat"><div class="n">1995</div><div class="l">In print since</div></div>
-        <div class="stat"><div class="n">2</div><div class="l">Languages</div></div>
+         <div class="stat"><div class="n">Ulysse</div><div class="l">Québec Tourism Award</div></div>
       </div>
     </div>
     <div class="hero-art reveal">
@@ -581,6 +658,16 @@
   </div>
 </footer>
 
+<div id="sticky-bar" aria-hidden="true">
+  <a href="#download" class="sb-pill">
+    <span class="sb-left">
+      <span class="sb-badge">Free · PDF</span>
+      <span class="sb-label">View the Map →</span>
+    </span>
+    <span class="sb-icon">🗺</span>
+  </a>
+</div>
+
 <script>
 /* ---------- HAMBURGER MENU ---------- */
 (function(){
@@ -604,6 +691,22 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+
+/* ---------- STICKY MOBILE BAR ---------- */
+(function(){
+  const bar=document.getElementById('sticky-bar');
+  const hero=document.querySelector('.hero');
+  const cta=document.getElementById('download');
+  if(!bar||!hero||!cta)return;
+  let heroGone=false,ctaVisible=false;
+  function update(){
+    const show=heroGone&&!ctaVisible;
+    bar.classList.toggle('visible',show);
+    bar.setAttribute('aria-hidden',!show);
+  }
+  new IntersectionObserver(([e])=>{heroGone=!e.isIntersecting;update();},{threshold:0}).observe(hero);
+  new IntersectionObserver(([e])=>{ctaVisible=e.isIntersecting;update();},{threshold:0}).observe(cta);
 })();
 
 /* ---------- LAZY PDF PREFETCH ---------- */

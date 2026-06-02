@@ -45,6 +45,7 @@ const FR = [
   ["What's Inside", 'Ce qui est inclus'],
   ['Paper Version', 'Version papier'],
   ['View the Map', 'Voir la carte'],
+  ['Free · PDF', 'Gratuit · PDF'],
 
   // ── HERO ─────────────────────────────────────────────────────────────────
   ['The Official Map · Edition 2026', 'La carte officielle · Édition 2026'],
@@ -53,7 +54,7 @@ const FR = [
    'Toutes les attractions du quartier historique sur un seul dépliant. PDF gratuit avec un circuit nocturne illuminé exclusif.'],
   ['Copies distributed', 'Copies distribuées'],
   ['In print since', 'En impression depuis'],
-  ['Languages', 'Langues'],
+  ['Québec Tourism Award', 'Prix du tourisme québécois'],
   ['alt="Map cover"', 'alt="Couverture de la carte"'],
 
   // ── GALLERY ──────────────────────────────────────────────────────────────
