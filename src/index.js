@@ -112,13 +112,12 @@ const FR = [
   // Long string first, short string (subset) second
   ['In partnership with Vieux-Montréal SDC. The trusted guide to the historic quarter for over 30 years.',
    'En partenariat avec la SDC Vieux-Montréal. Le guide de référence du quartier historique depuis plus de 30 ans.'],
-  ['In partnership with Vieux-Montréal SDC', 'En partenariat avec la SDC Vieux-Montréal'],
   // Footer column headings — matched with surrounding tags to avoid false positives
   ['>Explore</h2>', '>Explorer</h2>'],
   ['>Publisher</h2>', '>Éditeur</h2>'],
-  ['>Developer</h2>', '>Développeur</h2>'],
   ['© 2026 Old Montréal Official Map. All rights reserved.',
    '© 2026 Carte officielle du Vieux-Montréal. Tous droits réservés.'],
+  ['Site by <a', 'Site par <a'],
 ];
 
 export default {
