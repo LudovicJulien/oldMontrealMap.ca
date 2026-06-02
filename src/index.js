@@ -49,7 +49,7 @@ const FR = [
   // ── HERO ─────────────────────────────────────────────────────────────────
   ['The Official Map · Edition 2026', 'La carte officielle · Édition 2026'],
   ['Old <em>Montréal</em>', 'Vieux-<em>Montréal</em>'],
-  ['Every attraction in the historic quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.',
+  ['Every attraction in the historicpl quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.',
    'Toutes les attractions du quartier historique sur un seul dépliant. PDF gratuit avec un circuit nocturne illuminé exclusif.'],
   ['Copies distributed', 'Copies distribuées'],
   ['In print since', 'En impression depuis'],
@@ -105,6 +105,8 @@ const FR = [
    "La même carte disponible dans tous les hôtels du quartier, en PDF gratuit, à consulter avant même d'arriver."],
   ['href="mapeng.pdf"', 'href="mapfr.pdf"'],
   ['English Map', 'Carte en français'],
+  ['>Share<', '>Partager<'],
+  ['aria-label="Share this map"', 'aria-label="Partager cette carte"'],
 
   // ── FOOTER ───────────────────────────────────────────────────────────────
   // Long string first, short string (subset) second

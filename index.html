@@ -260,9 +260,11 @@
     background:radial-gradient(500px 300px at 90% 0%,rgba(245,197,24,.25),transparent 60%);}
   .download h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4vw,46px);position:relative;letter-spacing:-.5px}
   .download p{color:rgba(255,255,255,.85);font-size:18px;margin:16px 0 30px;position:relative}
-  .dl-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative}
+  .dl-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;max-width:500px;margin-left:auto;margin-right:auto}
   .dl{
-    display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.12);
+    display:inline-flex;align-items:center;justify-content:center;gap:12px;
+    flex:1;min-width:140px;
+    background:rgba(255,255,255,.12);
     border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);
     padding:16px 26px;border-radius:var(--r-m);font-weight:700;transition:.25s;cursor:pointer;
   }
@@ -590,6 +592,10 @@
       <p>The same map found at every hotel desk in the quarter, as a free PDF, ready before you arrive.</p>
       <div class="dl-row">
         <a class="dl" href="mapeng.pdf" target="_blank" rel="noopener"><span class="tag">PDF</span> English Map</a>
+        <button class="dl" id="share-btn" hidden aria-label="Share this map">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
+        </button>
       </div>
     </div>
   </div>
@@ -670,6 +676,17 @@
   }
   new IntersectionObserver(([e])=>{heroGone=!e.isIntersecting;update();},{threshold:0}).observe(hero);
   new IntersectionObserver(([e])=>{ctaVisible=e.isIntersecting;update();},{threshold:0}).observe(cta);
+})();
+
+/* ---------- WEB SHARE ---------- */
+(function(){
+  if(!navigator.share)return;
+  const btn=document.getElementById('share-btn');
+  if(!btn)return;
+  btn.hidden=false;
+  btn.addEventListener('click',function(){
+    navigator.share({title:document.title,url:window.location.href}).catch(function(){});
+  });
 })();
 
 /* ---------- LAZY PDF PREFETCH ---------- */
