@@ -54,7 +54,7 @@ const FR = [
   ['Copies distributed', 'Copies distribuées'],
   ["Of trusted editions", "D'éditions de confiance"],
   ['30 yrs', '30 ans'],
-  ['1 award', '1 prix'],
+  ['Québec Tourism Award', 'Prix du tourisme québécois'],
   ['alt="Map cover"', 'alt="Couverture de la carte"'],
 
   // ── GALLERY ──────────────────────────────────────────────────────────────
