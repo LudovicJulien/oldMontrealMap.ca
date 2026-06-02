@@ -174,11 +174,6 @@
   .fold.b{width:40%;z-index:1;margin-left:-10%;margin-top:50px;transform:rotate(6deg);transition:transform .5s}
   .hero-art:hover .fold.a{transform:rotate(-3deg) translateY(-8px)}
   .hero-art:hover .fold.b{transform:rotate(4deg) translateY(8px)}
-  .fold-label{
-    position:absolute;top:0;left:0;right:0;padding:20px;color:#fff;
-    background:linear-gradient(180deg,rgba(6,46,74,.55),transparent);
-    font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;
-  }
   @media(max-width:880px){
     .hero-grid{grid-template-columns:1fr;gap:40px}
     .hero-copy{text-align:center}
@@ -191,66 +186,13 @@
     .fold.b{width:34%;max-width:170px;margin-left:-8%;margin-top:36px}
   }
 
-  /* placeholder visual style */
-  .ph{
-    background:
-      repeating-linear-gradient(45deg,rgba(255,255,255,.06) 0 12px,transparent 12px 24px),
-      linear-gradient(135deg,var(--blue),var(--blue-deep));
-    display:grid;place-items:center;color:rgba(255,255,255,.8);position:relative;
-  }
-  .ph::after{
-    content:attr(data-label);position:absolute;bottom:14px;left:14px;right:14px;
-    font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-    color:rgba(255,255,255,.85);
-  }
-  .ph .cam{width:46px;height:46px;opacity:.55}
-
-  /* ---------- SLIDER ---------- */
+  /* ---------- SECTIONS ---------- */
   .section{padding:88px 0}
   .section.tint{background:var(--mist)}
   .sec-head{text-align:center;max-width:640px;margin:0 auto 50px}
   .sec-head .eyebrow{margin-bottom:18px}
   .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(32px,4vw,48px);color:var(--blue-ink);letter-spacing:-.5px;line-height:1.05}
   .sec-head p{color:var(--muted);font-size:17px;margin-top:16px}
-
-  .slider{position:relative;max-width:1000px;margin:0 auto}
-  .slides{
-    position:relative;border-radius:var(--r-m);overflow:hidden;
-    box-shadow:0 30px 70px -34px rgba(6,46,74,.5);
-    aspect-ratio:16/9;background:var(--blue-ink);
-  }
-  .slide{
-    position:absolute;inset:0;opacity:0;visibility:hidden;
-    transition:opacity .7s ease, transform .7s ease;transform:scale(1.04);
-  }
-  .slide.active{opacity:1;visibility:visible;transform:scale(1)}
-  .slide .ph{width:100%;height:100%}
-  .slide-cap{
-    position:absolute;left:0;right:0;bottom:0;padding:46px 34px 28px;
-    background:linear-gradient(0deg,rgba(6,46,74,.85),transparent);color:#fff;
-  }
-  .slide-cap h3{font-family:var(--serif);font-weight:600;font-size:24px;margin-bottom:4px}
-  .slide-cap p{font-size:14px;color:rgba(255,255,255,.85);font-weight:500}
-
-  .arrow{
-    position:absolute;top:50%;transform:translateY(-50%);z-index:5;
-    width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;
-    background:rgba(255,255,255,.92);color:var(--blue-ink);
-    display:grid;place-items:center;font-size:20px;font-weight:700;
-    box-shadow:0 10px 24px -8px rgba(6,46,74,.5);transition:.25s;
-  }
-  .arrow:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
-  .arrow.prev{left:18px}.arrow.next{right:18px}
-
-  .dots{display:flex;justify-content:center;gap:10px;margin-top:24px}
-  .dot-b{width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;background:var(--line);transition:.3s}
-  .dot-b.active{background:var(--blue);width:30px;border-radius:var(--r-pill)}
-
-  .thumbs{display:flex;justify-content:center;gap:12px;margin-top:24px;flex-wrap:wrap}
-  .thumb{width:88px;height:58px;border-radius:var(--r-s);overflow:hidden;cursor:pointer;opacity:.5;transition:.3s;border:2px solid transparent}
-  .thumb.active{opacity:1;border-color:var(--blue)}
-  .thumb .ph{width:100%;height:100%}
-  .thumb .ph::after{display:none}
 
   /* ---------- FEATURES ---------- */
   .features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -283,7 +225,6 @@
   /* ---------- PAPER VERSION ---------- */
   .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
   .split-art{position:relative;border-radius:var(--r-m);overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(6,46,74,.4)}
-  .split-art .ph{width:100%;height:100%}
   .split h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,44px);color:var(--blue-ink);letter-spacing:-.5px;margin-bottom:20px;line-height:1.05}
   .split p{color:var(--muted);font-size:16px;margin-bottom:16px}
   .award{
@@ -620,43 +561,6 @@
 </footer>
 
 <script>
-/* ---------- SLIDER ---------- */
-(function(){
-  const dotsWrap = document.getElementById('dots');
-  if (!dotsWrap) return;
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const thumbs = Array.from(document.querySelectorAll('.thumb'));
-  let i = 0, timer;
-
-  slides.forEach((_, idx)=>{
-    const b = document.createElement('button');
-    b.className = 'dot-b' + (idx===0?' active':'');
-    b.addEventListener('click', ()=>go(idx));
-    dotsWrap.appendChild(b);
-  });
-  const dots = Array.from(dotsWrap.children);
-
-  function go(n){
-    i = (n + slides.length) % slides.length;
-    slides.forEach((s,x)=>s.classList.toggle('active', x===i));
-    dots.forEach((d,x)=>d.classList.toggle('active', x===i));
-    thumbs.forEach((t,x)=>t.classList.toggle('active', x===i));
-    reset();
-  }
-  function next(){go(i+1)}
-  function prev(){go(i-1)}
-  function reset(){clearInterval(timer);timer=setInterval(next,5000)}
-
-  document.getElementById('next').addEventListener('click', next);
-  document.getElementById('prev').addEventListener('click', prev);
-  thumbs.forEach((t,idx)=>t.addEventListener('click',()=>go(idx)));
-  document.addEventListener('keydown',e=>{
-    if(e.key==='ArrowRight')next();
-    if(e.key==='ArrowLeft')prev();
-  });
-  reset();
-})();
-
 /* ---------- HAMBURGER MENU ---------- */
 (function(){
   const btn=document.getElementById('hamburger');
