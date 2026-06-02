@@ -194,6 +194,21 @@
   .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(32px,4vw,48px);color:var(--blue-ink);letter-spacing:-.5px;line-height:1.05}
   .sec-head p{color:var(--muted);font-size:17px;margin-top:16px}
 
+  /* gallery: editorial split header — title left, note right */
+  .sec-head-gallery{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:44px}
+  .sec-head-gallery .eyebrow{margin-bottom:14px}
+  .sec-head-gallery h2{font-family:var(--serif);font-weight:600;font-size:clamp(32px,4vw,48px);color:var(--blue-ink);letter-spacing:-.5px;line-height:1.05}
+  .gallery-aside{max-width:240px;flex-shrink:0;color:var(--muted);font-size:15px;line-height:1.6;padding-left:22px;border-left:2px solid var(--line)}
+  @media(max-width:640px){
+    .sec-head-gallery{flex-direction:column;align-items:flex-start;gap:0}
+    .gallery-aside{max-width:100%;border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:16px;margin-top:16px}
+  }
+
+  /* features: left-anchored, gold border accent */
+  .sec-head-features{border-left:4px solid var(--gold);padding-left:24px;margin-bottom:50px}
+  .sec-head-features .eyebrow{margin-bottom:14px}
+  .sec-head-features h2{font-family:var(--serif);font-weight:600;font-size:clamp(32px,4vw,48px);color:var(--blue-ink);letter-spacing:-.5px;line-height:1.05}
+
   /* ---------- FEATURES ---------- */
   .features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .card{
@@ -417,10 +432,12 @@
 <!-- GALLERY -->
 <section class="section tint" id="gallery">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Gallery</span>
-      <h2>Spotted throughout Old Montréal</h2>
-      <p>Free at hotel desks and tourist information centres throughout the historic quarter.</p>
+    <div class="sec-head-gallery reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Gallery</span>
+        <h2>Spotted throughout<br>Old Montréal</h2>
+      </div>
+      <p class="gallery-aside">Free at hotel desks and tourist information centres throughout the historic quarter.</p>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal">
@@ -454,7 +471,7 @@
 <!-- FEATURES -->
 <section class="section" id="features">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head-features reveal">
       <span class="eyebrow"><span class="dot"></span>What's inside</span>
       <h2>Six layers of the historic quarter</h2>
     </div>
@@ -497,6 +514,7 @@
 <section class="section tint" id="paper">
   <div class="wrap split" style="grid-template-columns:1fr;max-width:700px">
     <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span>Paper version</span>
       <h2>The paper version, everywhere you look</h2>
       <p>Pick one up free at the Tourist Information Centre in Place Jacques-Cartier, or at your hotel concierge desk.</p>
       <p>Created over 30 years ago, the map won a Ulysse award as part of the Grands prix du tourisme québécois.</p>
