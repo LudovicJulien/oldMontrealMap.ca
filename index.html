@@ -266,7 +266,7 @@
     flex:1;min-width:140px;
     background:rgba(255,255,255,.12);
     border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);
-    padding:16px 26px;border-radius:var(--r-m);font-weight:700;transition:.25s;cursor:pointer;
+    padding:16px 26px;border-radius:var(--r-m);font-weight:700;white-space:nowrap;transition:.25s;cursor:pointer;
   }
   .dl:hover{background:#fff;color:var(--blue-ink)}
   .dl .tag{background:var(--gold);color:var(--blue-ink);font-size:11px;font-weight:800;padding:4px 8px;border-radius:var(--r-s)}
@@ -308,10 +308,11 @@
     display:none;
     position:fixed;
     bottom:20px;
-    left:50%;
+    left:0;right:0;
     z-index:90;
     width:calc(100% - 40px);
     max-width:340px;
+    margin-left:auto;margin-right:auto;
     padding:5px;
     background:rgba(230,243,255,.48);
     backdrop-filter:blur(28px) saturate(180%);
@@ -323,11 +324,11 @@
       0 10px 32px rgba(6,46,74,.18),
       0 2px 8px rgba(6,46,74,.07),
       inset 0 1px 0 rgba(255,255,255,.9);
-    transform:translateX(-50%) translateY(calc(100% + 44px));
+    transform:translateY(calc(100% + 44px));
     opacity:0;
     transition:transform .46s cubic-bezier(.34,1.46,.64,1),opacity .28s ease;
   }
-  #sticky-bar.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+  #sticky-bar.visible{opacity:1;transform:translateY(0)}
   @media(max-width:767px){#sticky-bar{display:block}}
   @supports(padding:max(0px)){
     #sticky-bar{bottom:max(20px,calc(env(safe-area-inset-bottom) + 12px))}
