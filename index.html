@@ -215,7 +215,7 @@
     background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m);padding:34px 30px;
     transition:.3s;position:relative;overflow:hidden;
   }
-  .card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(6,46,74,.35);border-color:transparent}
+  .card:hover{box-shadow:0 20px 40px -24px rgba(6,46,74,.28);border-color:transparent;background:var(--mist)}
   .card .ic{
     width:54px;height:54px;border-radius:var(--r-m);display:grid;place-items:center;margin-bottom:22px;
     background:var(--mist);color:var(--blue);
@@ -228,13 +228,12 @@
   .card:nth-child(6) .ic{background:rgba(71,85,105,.1);color:#475569}
   .card h3{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--blue-ink);margin-bottom:10px}
   .card p{color:var(--muted);font-size:15px}
+  .card::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold)}
   .card:nth-child(1)::before{background:#b45309}
   .card:nth-child(2)::before{background:#4338ca}
   .card:nth-child(3)::before{background:#047857}
   .card:nth-child(4)::before{background:#be123c}
   .card:nth-child(6)::before{background:#475569}
-  .card::before{content:"";position:absolute;top:0;left:0;height:3px;width:0;background:var(--gold);transition:width .4s}
-  .card:hover::before{width:100%}
   @media(max-width:880px){.features{grid-template-columns:1fr}}
 
   /* ---------- PAPER VERSION ---------- */
