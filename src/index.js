@@ -49,14 +49,12 @@ const FR = [
   // ── HERO ─────────────────────────────────────────────────────────────────
   ['The Official Map · Edition 2026', 'La carte officielle · Édition 2026'],
   ['Old <em>Montréal</em>', 'Vieux-<em>Montréal</em>'],
-  ['2026 EDITION', 'ÉDITION 2026'],
   ['Every attraction in the historic quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.',
    'Toutes les attractions du quartier historique sur un seul dépliant. PDF gratuit avec un circuit nocturne illuminé exclusif.'],
   ['Copies distributed', 'Copies distribuées'],
   ["Of trusted editions", "D'éditions de confiance"],
   ['30 yrs', '30 ans'],
   ['1 award', '1 prix'],
-  ['★ New for 2026', '★ Nouveau pour 2026'],
   ['alt="Map cover"', 'alt="Couverture de la carte"'],
 
   // ── GALLERY ──────────────────────────────────────────────────────────────

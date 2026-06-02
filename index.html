@@ -148,11 +148,6 @@
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(245,197,24,.25)}
   h1.title{font-family:var(--serif);font-weight:600;font-size:clamp(46px,6vw,82px);line-height:.95;letter-spacing:-1.5px;color:var(--blue-ink)}
   h1.title em{font-style:italic;color:var(--blue);display:block}
-  h1.title .year{
-    font-family:var(--sans);font-weight:800;font-size:.42em;letter-spacing:1px;
-    color:var(--gold-deep);display:inline-block;margin-top:14px;
-    -webkit-text-stroke:0;
-  }
   .lede{font-size:19px;color:var(--muted);max-width:480px;margin:26px 0 32px;line-height:1.55}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
   .hero-stats{display:flex;gap:34px;margin-top:42px;padding-top:30px;border-top:1px solid var(--line)}
@@ -180,12 +175,6 @@
     position:absolute;top:0;left:0;right:0;padding:20px;color:#fff;
     background:linear-gradient(180deg,rgba(6,46,74,.55),transparent);
     font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;
-  }
-  .ribbon{
-    position:absolute;z-index:3;top:0;right:6%;
-    background:var(--gold);color:var(--blue-ink);font-weight:800;font-size:13px;
-    padding:10px 18px;border-radius:100px;letter-spacing:.5px;
-    box-shadow:0 12px 30px -10px rgba(245,197,24,.8);transform:rotate(4deg);
   }
   @media(max-width:880px){
     .hero-grid{grid-template-columns:1fr;gap:40px}
@@ -453,7 +442,7 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow"><span class="dot"></span>The Official Map · Edition 2026</span>
-      <h1 class="title">Old <em>Montréal</em><span class="year">2026 EDITION</span></h1>
+      <h1 class="title">Old <em>Montréal</em></h1>
       <p class="lede">Every attraction in the historic quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.</p>
       <div class="hero-cta">
         <a href="#download" class="btn gold">View the Map</a>
@@ -465,7 +454,6 @@
       </div>
     </div>
     <div class="hero-art reveal">
-      <div class="ribbon">★ New for 2026</div>
       <div class="fold a">
         <picture>
           <source srcset="./images/map-cover@1x.webp 1x, ./images/map-cover.webp 2x" type="image/webp">
