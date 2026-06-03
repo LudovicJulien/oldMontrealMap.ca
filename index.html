@@ -631,7 +631,7 @@
   </div>
 </footer>
 
-<div id="sticky-bar" aria-hidden="true">
+<div id="sticky-bar" inert>
   <a href="#download" class="sb-pill">View the Map <span class="sb-arr">→</span></a>
 </div>
 
@@ -670,7 +670,7 @@
   function update(){
     const show=heroGone&&!ctaVisible;
     bar.classList.toggle('visible',show);
-    bar.setAttribute('aria-hidden',!show);
+    bar.toggleAttribute('inert',!show);
   }
   new IntersectionObserver(([e])=>{heroGone=!e.isIntersecting;update();},{threshold:0}).observe(hero);
   new IntersectionObserver(([e])=>{ctaVisible=e.isIntersecting;update();},{threshold:0}).observe(cta);
