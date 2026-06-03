@@ -17,7 +17,7 @@ const FR = [
   ['property="og:locale" content="en_CA"', 'property="og:locale" content="fr_CA"'],
   ['property="og:locale:alternate" content="fr_CA"', 'property="og:locale:alternate" content="en_CA"'],
   ['content="Old Montréal Official Map"', 'content="Carte officielle Vieux-Montréal"'],
-  ['content="https://www.oldmontrealmap.ca/images/map-cover.webp"', 'content="https://www.cartevieuxmontreal.ca/images/carte-cover.webp"'],
+  ['content="https://www.oldmontrealmap.ca/images/og-preview.webp"', 'content="https://www.cartevieuxmontreal.ca/images/og-preview-fr.webp"'],
   ['content="Old Montréal, Québec"', 'content="Vieux-Montréal, Québec"'],
 
   // ── JSON-LD ──────────────────────────────────────────────────────────────
