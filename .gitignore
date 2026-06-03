@@ -20,20 +20,21 @@ Thumbs.db
 *.swo
 *~
 
-# Node (si tu as du node)
+# Node
 node_modules/
-package-lock.json
 
 # Build outputs
 dist/
 build/
 out/
 
-# Cloudflare
-.wrangler/
-wrangler.toml (optionnel, dépend si tu veux le versionner)
+# Playwright
+playwright-report/
+test-results/
+
+# Claude Code
+.claude/
 
 # Autres fichiers temporaires
 *.tmp
-claude.md
 *.backup
