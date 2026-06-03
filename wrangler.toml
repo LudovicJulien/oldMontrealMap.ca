@@ -1,7 +1,7 @@
 name = "oldmontrealmap"
 account_id = "3da170f83992089a9eebdd5bee516d04"
 compatibility_date = "2025-01-01"
-main = "src/index.js"
+main = "worker/index.js"
 
 [assets]
 directory = "."
