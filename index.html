@@ -185,6 +185,8 @@
     .fold.a{width:38%;max-width:190px;margin-top:10px}
     .fold.b{width:34%;max-width:170px;margin-left:-8%;margin-top:36px}
   }
+  .mob-br{display:none}
+  @media(max-width:426px){.sep{display:none}.mob-br{display:inline}}
 
   /* ---------- SECTIONS ---------- */
   .section{padding:88px 0}
@@ -450,7 +452,7 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>The Official Map · Edition 2026</span>
+      <span class="eyebrow"><span class="dot"></span>The Official Map<span class="sep"> · </span><br class="mob-br">Edition 2026</span>
       <h1 class="title">Old <em>Montréal</em></h1>
       <p class="lede">Every attraction in the historic quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.</p>
       <div class="hero-cta">

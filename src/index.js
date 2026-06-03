@@ -47,7 +47,7 @@ const FR = [
   ['View the Map', 'Voir la carte'],
 
   // ── HERO ─────────────────────────────────────────────────────────────────
-  ['The Official Map · Edition 2026', 'La carte officielle · Édition&nbsp;2026'],
+  ['The Official Map<span class="sep"> · </span><br class="mob-br">Edition 2026', 'La carte officielle<span class="sep"> · </span><br class="mob-br">Édition&nbsp;2026'],
   ['Old <em>Montréal</em>', 'Vieux-<em>Montréal</em>'],
   ['Every attraction in the historic quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.',
    'Toutes les attractions du quartier historique sur un seul dépliant. PDF gratuit avec un circuit nocturne illuminé exclusif.'],
