@@ -49,7 +49,7 @@ const FR = [
   // ── HERO ─────────────────────────────────────────────────────────────────
   ['The Official Map · Edition 2026', 'La carte officielle · Édition&nbsp;2026'],
   ['Old <em>Montréal</em>', 'Vieux-<em>Montréal</em>'],
-  ['Every attraction in the historicpl quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.',
+  ['Every attraction in the historic quarter on a single fold. Free PDF with a dedicated night-lights walking circuit.',
    'Toutes les attractions du quartier historique sur un seul dépliant. PDF gratuit avec un circuit nocturne illuminé exclusif.'],
   ['Copies distributed', 'Copies distribuées'],
   ['In print since', 'En impression depuis'],
@@ -58,7 +58,7 @@ const FR = [
 
   // ── GALLERY ──────────────────────────────────────────────────────────────
   ['<span class="dot"></span>Gallery', '<span class="dot"></span>Galerie'],
-  ['Spotted throughout Old Montréal', 'Aperçu dans tout le Vieux-Montréal'],
+  ['Spotted throughout<br>Old Montréal', 'Aperçu dans tout le Vieux-Montréal'],
   ['Free at hotel desks, tourist information centres, heritage sites and select shops throughout the quarter.',
    "Gratuite aux comptoirs des hôtels, dans les bureaux d'information touristique, les sites patrimoniaux et certains commerces du quartier."],
   ['alt="Official map display stand in Old Montréal"', 'alt="Présentoir de la carte officielle dans le Vieux-Montréal"'],
