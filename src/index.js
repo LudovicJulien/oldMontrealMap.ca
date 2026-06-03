@@ -2,17 +2,17 @@
 const FR = [
   // ── <html> + <head> ──────────────────────────────────────────────────────
   ['lang="en"', 'lang="fr"'],
-  ['<title>Official Map — Old Montréal 2026</title>',
-   '<title>Carte officielle — Vieux-Montréal 2026</title>'],
-  ['Free official walking map of Old Montréal 2026 — download in PDF, discover historic landmarks, restaurants & must-see streets in Vieux-Montréal.',
-   'Carte officielle gratuite du Vieux-Montréal 2026 — téléchargez en PDF, découvrez les monuments historiques, restaurants & rues incontournables de Vieux-Montréal.'],
+  ['<title>Old Montréal Official Map 2026 | Free PDF Walking Map</title>',
+   '<title>Carte officielle Vieux-Montréal 2026 | PDF gratuit à télécharger</title>'],
+  ['Free official PDF map of Old Montréal 2026. Museums, historic landmarks, restaurants and the exclusive night-lights walking circuit in Vieux-Montréal.',
+   'Carte officielle gratuite du Vieux-Montréal 2026 en PDF. Musées, monuments historiques, restaurants et circuit nocturne illuminé dans le quartier historique.'],
   // hreflang canonical
   ['<link rel="canonical" href="https://www.oldmontrealmap.ca/">',
    '<link rel="canonical" href="https://www.cartevieuxmontreal.ca/">'],
 
   // ── OPEN GRAPH / TWITTER / GEO ──────────────────────────────────────────
   ['content="https://www.oldmontrealmap.ca/"', 'content="https://www.cartevieuxmontreal.ca/"'],
-  ['content="Official Map — Old Montréal 2026"', 'content="Carte officielle — Vieux-Montréal 2026"'],
+  ['content="Old Montréal Official Map 2026 | Free PDF Walking Map"', 'content="Carte officielle Vieux-Montréal 2026 | PDF gratuit à télécharger"'],
   ['content="Official Map of Old Montréal 2026"', 'content="Carte officielle du Vieux-Montréal 2026"'],
   ['property="og:locale" content="en_CA"', 'property="og:locale" content="fr_CA"'],
   ['property="og:locale:alternate" content="fr_CA"', 'property="og:locale:alternate" content="en_CA"'],
