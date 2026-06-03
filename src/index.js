@@ -96,7 +96,7 @@ const FR = [
    'Créée il y a plus de 30 ans, la carte a remporté un prix Ulysse dans le cadre des Grands prix du tourisme québécois.'],
   // Location chips
   ['Bonsecours Market', 'Marché Bonsecours'],
-  ['Notre-Dame Basilica', 'Basilique Notre-Dame'],
+
   ['Hotel concierges', "Concierges d'hôtels"],
 
   // ── DOWNLOAD / VIEW MAP ───────────────────────────────────────────────────

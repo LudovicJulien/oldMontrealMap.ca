@@ -236,22 +236,21 @@
   @media(max-width:880px){.features{grid-template-columns:1fr}}
 
   /* ---------- PAPER VERSION ---------- */
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  .split-art{position:relative;border-radius:var(--r-m);overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(6,46,74,.4)}
-  .split-art img{width:100%;height:100%;object-fit:cover;display:block}
-  .split h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,44px);color:var(--blue-ink);letter-spacing:-.5px;margin-bottom:20px;line-height:1.05}
-  .split p{color:var(--muted);font-size:16px;margin-bottom:16px}
+  .paper-block{max-width:760px;margin:0 auto}
+  .paper-block h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,44px);color:var(--blue-ink);letter-spacing:-.5px;margin-bottom:28px;line-height:1.05}
+  .paper-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:8px}
+  .paper-cols p{color:var(--muted);font-size:16px;line-height:1.7;margin:0}
   .award{
-    display:inline-flex;align-items:center;gap:12px;margin-top:18px;
-    background:var(--mist);border:1px solid var(--line);border-radius:var(--r-m);padding:14px 18px;
+    display:inline-flex;align-items:center;gap:12px;margin-top:24px;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m);padding:14px 18px;
   }
   .award .b{display:grid;place-items:center;color:var(--gold-deep)}
   .award .b svg{width:26px;height:26px}
   .award span{font-size:14px;color:var(--ink);font-weight:600}
   .award span b{color:var(--blue);display:block;font-weight:800}
-  .where{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
-  .where .chip{font-size:13px;font-weight:600;color:var(--blue-deep);background:var(--mist);border:1px solid var(--line);padding:8px 14px;border-radius:var(--r-pill)}
-  @media(max-width:880px){.split{grid-template-columns:1fr;gap:40px}}
+  .where{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+  .where .chip{font-size:13px;font-weight:600;color:var(--blue-deep);background:var(--paper);border:1px solid var(--line);padding:8px 14px;border-radius:var(--r-pill)}
+  @media(max-width:640px){.paper-cols{grid-template-columns:1fr}}
 
   /* ---------- DOWNLOAD CTA ---------- */
   .download{
@@ -561,11 +560,13 @@
 
 <!-- PAPER VERSION -->
 <section class="section tint" id="paper">
-  <div class="wrap split">
-    <div class="reveal">
+  <div class="wrap">
+    <div class="paper-block reveal">
       <h2>The paper version, everywhere you look</h2>
-      <p>Pick one up free at the Tourist Information Centre in Place Jacques-Cartier, or at your hotel concierge desk.</p>
-      <p>Created over 30 years ago, the map won a Ulysse award as part of the Grands prix du tourisme québécois.</p>
+      <div class="paper-cols">
+        <p>Pick one up free at the Tourist Information Centre in Place Jacques-Cartier, or at your hotel concierge desk.</p>
+        <p>Created over 30 years ago, the map won a Ulysse award as part of the Grands prix du tourisme québécois.</p>
+      </div>
       <div class="award">
         <span class="b"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 0 1-2-2V5h4"/><path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M6 5h12v7a6 6 0 0 1-12 0V5z"/><path d="M12 18v4"/><path d="M8 22h8"/></svg></span>
         <span><b>Ulysse Award</b>Grands prix du tourisme québécois</span>
@@ -573,16 +574,10 @@
       <div class="where">
         <span class="chip">Place Jacques-Cartier</span>
         <span class="chip">Bonsecours Market</span>
-        <span class="chip">Notre-Dame Basilica</span>
+        <span class="chip">Jardin Nelson</span>
         <span class="chip">Palais des Congrès</span>
         <span class="chip">Hotel concierges</span>
       </div>
-    </div>
-    <div class="split-art reveal">
-      <picture>
-        <source srcset="./images/presentoir_1.webp" type="image/webp">
-        <img src="./images/presentoir_1.jpg" alt="Official map display stand at Place Jacques-Cartier" loading="lazy" width="800" height="800">
-      </picture>
     </div>
   </div>
 </section>
