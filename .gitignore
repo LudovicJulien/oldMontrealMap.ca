@@ -28,6 +28,9 @@ dist/
 build/
 out/
 
+# Cloudflare
+.wrangler/
+
 # Playwright
 playwright-report/
 test-results/
