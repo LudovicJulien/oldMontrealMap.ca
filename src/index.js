@@ -53,6 +53,7 @@ const FR = [
    'Toutes les attractions du quartier historique sur un seul dépliant. PDF gratuit avec un circuit nocturne illuminé exclusif.'],
   ['Copies distributed', 'Copies distribuées'],
   ['In print since', 'En impression depuis'],
+  ['Québec Tourism Awards', 'Grands prix du tourisme québécois'],
   ['Québec Tourism Award', 'Prix du tourisme québécois'],
   ['alt="Map cover"', 'alt="Couverture de la carte"'],
 
@@ -92,9 +93,10 @@ const FR = [
   ['Pick one up free at the Tourist Information Centre in Place Jacques-Cartier, or at your hotel concierge desk.',
    "Disponible gratuitement au Bureau d'information touristique de la Place Jacques-Cartier ou au concierge de votre hôtel."],
   ['Ulysse Award', 'Prix Ulysse'],
-  ['Created over 30 years ago, the map won a Ulysse award as part of the Grands prix du tourisme québécois.',
+  ['Created over 30 years ago, the map won a Ulysse award as part of the Québec Tourism Awards.',
    'Créée il y a plus de 30 ans, la carte a remporté un prix Ulysse dans le cadre des Grands prix du tourisme québécois.'],
   // Location chips
+  ['Montreal Convention Centre', 'Palais des Congrès'],
   ['Bonsecours Market', 'Marché Bonsecours'],
 
   ['Hotel concierges', "Concierges d'hôtels"],
