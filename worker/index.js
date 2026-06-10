@@ -55,15 +55,17 @@ const FR = [
   ['In print since', 'En impression depuis'],
   ['Québec Tourism Awards', 'Grands prix du tourisme québécois'],
   ['Québec Tourism Award', 'Prix du tourisme québécois'],
-  ['alt="Map cover"', 'alt="Couverture de la carte"'],
+  ['alt="Old Montreal Official Map Cultural and Heritage Attractions"', 'alt="Carte officielle du Vieux-Montréal, attraits culturels et patrimoniaux"'],
 
   // ── GALLERY ──────────────────────────────────────────────────────────────
   ['<span class="dot"></span>Gallery', '<span class="dot"></span>Galerie'],
   ['Spotted throughout<br>Old Montréal', 'Aperçu dans tout le Vieux-Montréal'],
   ['Free at hotel desks, tourist information centres, heritage sites and select shops throughout the quarter.',
    "Gratuite aux comptoirs des hôtels, dans les bureaux d'information touristique, les sites patrimoniaux et certains commerces du quartier."],
-  ['alt="Official map display stand in Old Montréal"', 'alt="Présentoir de la carte officielle dans le Vieux-Montréal"'],
-  ['alt="Official map display stand at Place Jacques-Cartier"', 'alt="Présentoir de la carte officielle à la Place Jacques-Cartier"'],
+  ['alt="Main Old Montreal Official Map display stand at Bonsecours Market"', 'alt="Présentoir principal de la carte officielle au Marché Bonsecours"'],
+  ['alt="Secondary Old Montreal Official Map display stand at Bonsecours Market"', 'alt="Présentoir secondaire de la carte officielle au Marché Bonsecours"'],
+  ['alt="Old Montreal Official Map display stand at Jardin Nelson entrance"', "alt=\"Présentoir de la carte officielle à l'entrée du Jardin Nelson\""],
+  ['alt="Old Montreal Official Map display stand at Montreal Convention Centre"', 'alt="Présentoir de la carte officielle au Palais des Congrès de Montréal"'],
 
   // ── FEATURES ─────────────────────────────────────────────────────────────
   ["What's inside", 'Ce qui est inclus'],
@@ -133,11 +135,37 @@ export default {
 
     const lang = url.hostname.includes('cartevieuxmontreal') ? 'fr' : 'en';
 
+    // Redirect PDF landing pages to their canonical domain
+    if (url.pathname === '/carte-vieux-montreal-pdf' && lang === 'en') {
+      return Response.redirect('https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf', 301);
+    }
+    if (url.pathname === '/old-montreal-map-pdf' && lang === 'fr') {
+      return Response.redirect('https://www.oldmontrealmap.ca/old-montreal-map-pdf', 301);
+    }
+
+    // Clean URL routing for PDF landing pages
+    if (url.pathname === '/old-montreal-map-pdf' || url.pathname === '/carte-vieux-montreal-pdf') {
+      const htmlUrl = new URL(url.pathname + '.html', url.origin);
+      const htmlResponse = await env.ASSETS.fetch(new Request(htmlUrl, request));
+      if (lang === 'fr') {
+        const ct = htmlResponse.headers.get('content-type') ?? '';
+        if (ct.includes('text/html')) {
+          let html = await htmlResponse.text();
+          for (const [from, to] of FR) html = html.replaceAll(from, to);
+          const h = new Headers(htmlResponse.headers);
+          h.delete('content-length');
+          h.set('X-Worker-Executed', `lang=${lang},replaced=true`);
+          return new Response(html, { status: htmlResponse.status, headers: h });
+        }
+      }
+      return htmlResponse;
+    }
+
     // Serve FR-specific sitemap and robots.txt
     if (lang === 'fr') {
       if (url.pathname === '/sitemap.xml') {
         return new Response(
-          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-06-02</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/mapfr.pdf</loc>\n    <lastmod>2026-06-02</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
+          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-06-09</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf</loc>\n    <lastmod>2026-06-09</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
           { headers: { 'content-type': 'application/xml; charset=utf-8' } }
         );
       }
@@ -151,6 +179,13 @@ export default {
 
     // env.ASSETS is the correct way to fetch static files in a Workers Assets setup
     const response = await env.ASSETS.fetch(request);
+
+    // Prevent search engines from indexing raw PDF files (SEO handled by HTML landing pages)
+    if (url.pathname.endsWith('.pdf')) {
+      const headers = new Headers(response.headers);
+      headers.set('X-Robots-Tag', 'noindex');
+      return new Response(response.body, { status: response.status, headers });
+    }
 
     const contentType = response.headers.get('content-type') ?? '';
     if (!contentType.includes('text/html') || lang === 'en') return response;
