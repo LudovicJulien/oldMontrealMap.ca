@@ -18,7 +18,7 @@ const FR = [
   ['property="og:locale" content="en_CA"', 'property="og:locale" content="fr_CA"'],
   ['property="og:locale:alternate" content="fr_CA"', 'property="og:locale:alternate" content="en_CA"'],
   ['content="Old Montréal Official Map"', 'content="Carte officielle Vieux-Montréal"'],
-  ['content="https://www.oldmontrealmap.ca/images/og-preview.webp"', 'content="https://www.cartevieuxmontreal.ca/images/og-preview-fr.webp"'],
+  ['content="https://www.oldmontrealmap.ca/img/og-preview.webp"', 'content="https://www.cartevieuxmontreal.ca/img/og-preview-fr.webp"'],
   ['content="Old Montréal, Québec"', 'content="Vieux-Montréal, Québec"'],
 
   // ── JSON-LD ──────────────────────────────────────────────────────────────
@@ -31,7 +31,7 @@ const FR = [
   ['"alternateName": "Vieux-Montréal",', '"alternateName": "Old Montréal",'],
   ['"publisher": {"@id": "https://www.oldmontrealmap.ca/#organization"}', '"publisher": {"@id": "https://www.cartevieuxmontreal.ca/#organization"}'],
   ['"@id": "https://www.oldmontrealmap.ca/#organization"', '"@id": "https://www.cartevieuxmontreal.ca/#organization"'],
-  ['"image": "https://www.oldmontrealmap.ca/images/map-cover.webp"', '"image": "https://www.cartevieuxmontreal.ca/images/carte-cover.webp"'],
+  ['"image": "https://www.oldmontrealmap.ca/img/map-cover.webp"', '"image": "https://www.cartevieuxmontreal.ca/img/carte-cover.webp"'],
 
   // ── LANG SWITCHER ────────────────────────────────────────────────────────
   ['href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">FR',
