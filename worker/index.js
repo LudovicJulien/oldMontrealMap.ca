@@ -33,6 +33,12 @@ const FR = [
   ['"@id": "https://www.oldmontrealmap.ca/#organization"', '"@id": "https://www.cartevieuxmontreal.ca/#organization"'],
   ['"image": "https://www.oldmontrealmap.ca/img/map-cover.webp"', '"image": "https://www.cartevieuxmontreal.ca/img/carte-cover.webp"'],
 
+  // ── FAVICON ──────────────────────────────────────────────────────────────
+  ['href="/favicon.ico" sizes="any"', 'href="/img/favicon-fr.ico" sizes="any"'],
+  ['href="/img/favicon-32x32.png"', 'href="/img/favicon-fr-32x32.png"'],
+  ['href="/img/favicon-16x16.png"', 'href="/img/favicon-fr-16x16.png"'],
+  ['href="/img/apple-touch-icon.png"', 'href="/img/apple-touch-icon-fr.png"'],
+
   // ── LANG SWITCHER ────────────────────────────────────────────────────────
   ['href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">FR',
    'href="https://www.oldmontrealmap.ca/" class="btn ghost lang-btn" hreflang="en" title="English version">EN'],
