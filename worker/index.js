@@ -107,7 +107,7 @@ const FR = [
   ['The full quarter, on one page', 'Tout le quartier, en un seul dépliant'],
   ['The same map found at every hotel desk in the quarter, as a free PDF, ready before you arrive.',
    "La même carte disponible dans tous les hôtels du quartier, en PDF gratuit, à consulter avant même d'arriver."],
-  ['href="mapeng.pdf"', 'href="mapfr.pdf"'],
+  ['href="old-montreal-official-map-2026.pdf"', 'href="carte-officielle-vieux-montreal-2026.pdf"'],
   ['English Map', 'Carte en français'],
   ['>Share<', '>Partager<'],
   ['aria-label="Share this map"', 'aria-label="Partager cette carte"'],

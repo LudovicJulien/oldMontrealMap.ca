@@ -20,14 +20,14 @@ test.describe('EN — oldmontrealmap.ca', () => {
     await expect(page.locator('h1').first()).toBeVisible();
   });
 
-  test('EN PDF link is present and points to mapeng.pdf', async ({ page }) => {
+  test('EN PDF link is present and points to old-montreal-official-map-2026.pdf', async ({ page }) => {
     await page.goto('/');
-    const pdfLink = page.locator('a[href="mapeng.pdf"]').first();
+    const pdfLink = page.locator('a[href="old-montreal-official-map-2026.pdf"]').first();
     await expect(pdfLink).toBeVisible();
   });
 
-  test('mapeng.pdf is accessible (HTTP 200)', async ({ request }) => {
-    const res = await request.get('https://www.oldmontrealmap.ca/mapeng.pdf');
+  test('old-montreal-official-map-2026.pdf is accessible (HTTP 200)', async ({ request }) => {
+    const res = await request.get('https://www.oldmontrealmap.ca/old-montreal-official-map-2026.pdf');
     expect(res.status()).toBe(200);
     expect(res.headers()['content-type']).toContain('pdf');
   });
@@ -67,14 +67,14 @@ test.describe('FR — cartevieuxmontreal.ca', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
   });
 
-  test('FR PDF link points to mapfr.pdf', async ({ page }) => {
+  test('FR PDF link points to carte-officielle-vieux-montreal-2026.pdf', async ({ page }) => {
     await page.goto('/');
-    const pdfLink = page.locator('a[href="mapfr.pdf"]').first();
+    const pdfLink = page.locator('a[href="carte-officielle-vieux-montreal-2026.pdf"]').first();
     await expect(pdfLink).toBeVisible();
   });
 
-  test('mapfr.pdf is accessible (HTTP 200)', async ({ request }) => {
-    const res = await request.get('https://www.cartevieuxmontreal.ca/mapfr.pdf');
+  test('carte-officielle-vieux-montreal-2026.pdf is accessible (HTTP 200)', async ({ request }) => {
+    const res = await request.get('https://www.cartevieuxmontreal.ca/carte-officielle-vieux-montreal-2026.pdf');
     expect(res.status()).toBe(200);
   });
 
