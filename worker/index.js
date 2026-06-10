@@ -146,7 +146,7 @@ export default {
     // Clean URL routing for PDF landing pages
     if (url.pathname === '/old-montreal-map-pdf' || url.pathname === '/carte-vieux-montreal-pdf') {
       const htmlUrl = new URL(url.pathname + '.html', url.origin);
-      const htmlResponse = await env.ASSETS.fetch(new Request(htmlUrl, request));
+      const htmlResponse = await env.ASSETS.fetch(htmlUrl.toString());
       if (lang === 'fr') {
         const ct = htmlResponse.headers.get('content-type') ?? '';
         if (ct.includes('text/html')) {
