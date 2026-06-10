@@ -2,6 +2,7 @@
 const FR = [
   // ── <html> + <head> ──────────────────────────────────────────────────────
   ['lang="en"', 'lang="fr"'],
+  ['http-equiv="content-language" content="en"', 'http-equiv="content-language" content="fr"'],
   ['<title>Old Montréal Official Map 2026 | Free PDF Walking Map</title>',
    '<title>Carte officielle Vieux-Montréal 2026 | PDF gratuit à télécharger</title>'],
   ['Free official PDF map of Old Montréal 2026. Museums, historic landmarks, restaurants and the exclusive night-lights walking circuit in Vieux-Montréal.',
@@ -165,7 +166,7 @@ export default {
     if (lang === 'fr') {
       if (url.pathname === '/sitemap.xml') {
         return new Response(
-          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-06-09</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf</loc>\n    <lastmod>2026-06-09</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
+          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-06-10</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf</loc>\n    <lastmod>2026-06-10</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
           { headers: { 'content-type': 'application/xml; charset=utf-8' } }
         );
       }
