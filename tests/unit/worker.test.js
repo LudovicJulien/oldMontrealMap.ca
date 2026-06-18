@@ -89,12 +89,23 @@ describe('Worker — French domain (cartevieuxmontreal.ca)', () => {
     expect(res.headers.get('content-length')).toBeNull();
   });
 
-  it('sets X-Worker-Executed header on FR HTML responses', async () => {
+  it('sets HTTP security headers on FR HTML responses', async () => {
     const res = await worker.fetch(
       new Request('https://www.cartevieuxmontreal.ca/'),
       makeEnv()
     );
-    expect(res.headers.get('X-Worker-Executed')).toBe('lang=fr,replaced=true');
+    expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(res.headers.get('X-Frame-Options')).toBe('SAMEORIGIN');
+    expect(res.headers.get('Referrer-Policy')).toBe('strict-origin-when-cross-origin');
+    expect(res.headers.get('Permissions-Policy')).toBe('geolocation=(), camera=(), microphone=()');
+  });
+
+  it('does not expose X-Worker-Executed header', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.cartevieuxmontreal.ca/'),
+      makeEnv()
+    );
+    expect(res.headers.get('X-Worker-Executed')).toBeNull();
   });
 
   it('does not transform non-HTML assets (images, PDFs)', async () => {
@@ -109,10 +120,10 @@ describe('Worker — French domain (cartevieuxmontreal.ca)', () => {
       },
     };
     const res = await worker.fetch(
-      new Request('https://www.cartevieuxmontreal.ca/images/carte-cover.webp'),
+      new Request('https://www.cartevieuxmontreal.ca/img/carte-cover.webp'),
       env
     );
-    expect(res.headers.get('X-Worker-Executed')).toBeNull();
+    expect(res.headers.get('X-Content-Type-Options')).toBeNull();
   });
 });
 

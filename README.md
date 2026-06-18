@@ -77,17 +77,17 @@ HTTP request
 
 ```
 public/
-  index.html          Single source for both EN and FR
-  images/             WebP images with @1x / @2x responsive variants
-  mapeng.pdf          English map
-  mapfr.pdf           French map
+  index.html                              Single source for both EN and FR
+  img/                                    WebP images with @1x / @2x responsive variants
+  old-montreal-official-map-2026.pdf      English map
+  carte-officielle-vieux-montreal-2026.pdf French map
 
 worker/
   index.js            Cloudflare Worker: routing, FR rewrite, sitemap generation
 
 tests/
-  unit/               Vitest: Worker routing and rewrite logic (11 tests)
-  e2e/                Playwright: live smoke tests on both domains (34 tests)
+  unit/               Vitest: Worker routing and rewrite logic
+  e2e/                Playwright: live smoke tests on both domains
 
 .github/workflows/
   ci.yml              Unit tests on every push and pull request
@@ -108,7 +108,7 @@ npm install
 npx wrangler dev
 ```
 
-> `wrangler dev` requires `CLOUDFLARE_API_TOKEN` in your environment.
+> `wrangler dev` requires `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in your environment (`.env` file).
 
 ---
 
@@ -125,7 +125,7 @@ npm run test:e2e
 npm run test:e2e:ui
 ```
 
-**Unit tests** cover: security path blocking, EN passthrough, FR HTML rewriting, `content-length` header removal after rewrite, `X-Worker-Executed` header, FR sitemap and robots generation, non-HTML asset passthrough.
+**Unit tests** cover: security path blocking, EN passthrough, FR HTML rewriting, `content-length` header removal after rewrite, HTTP security headers on FR responses, FR sitemap and robots generation, non-HTML asset passthrough.
 
 **E2E tests** cover: page titles, `lang` attributes, PDF availability (HTTP 200), in-page anchor links, Open Graph metadata consistency, FR domain translations, FR sitemap validity, mobile sticky CTA visibility after scroll, security rules on the live site.
 
@@ -140,4 +140,4 @@ git push main
                 └─ E2E smoke tests         (validates the live deployment)
 ```
 
-The `CLOUDFLARE_API_TOKEN` secret must be configured in the repository's GitHub Actions settings.
+The `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets must be configured in the repository's GitHub Actions settings.

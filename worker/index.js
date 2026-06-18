@@ -132,6 +132,17 @@ const FR = [
   ['Site by <a', 'Site par <a'],
 ];
 
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'geolocation=(), camera=(), microphone=()',
+};
+
+function applySecurityHeaders(headers) {
+  for (const [k, v] of Object.entries(SECURITY_HEADERS)) headers.set(k, v);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -162,7 +173,7 @@ export default {
           for (const [from, to] of FR) html = html.replaceAll(from, to);
           const h = new Headers(htmlResponse.headers);
           h.delete('content-length');
-          h.set('X-Worker-Executed', `lang=${lang},replaced=true`);
+          applySecurityHeaders(h);
           return new Response(html, { status: htmlResponse.status, headers: h });
         }
       }
@@ -206,7 +217,7 @@ export default {
 
     const headers = new Headers(response.headers);
     headers.delete('content-length');
-    headers.set('X-Worker-Executed', `lang=${lang},replaced=true`);
+    applySecurityHeaders(headers);
     return new Response(html, { status: response.status, headers });
   },
 };
