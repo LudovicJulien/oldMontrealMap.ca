@@ -7,7 +7,7 @@
 
 **Live →** [oldmontrealmap.ca](https://www.oldmontrealmap.ca) &nbsp;·&nbsp; [cartevieuxmontreal.ca](https://www.cartevieuxmontreal.ca)
 
-![Site preview](./public/images/og-preview.webp)
+![Site preview](./public/img/og-preview.webp)
 
 ---
 
