@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /mapeng.pdf
+Disallow: /mapfr.pdf
 
 Sitemap: https://www.oldmontrealmap.ca/sitemap.xml

@@ -1,5 +1,5 @@
 name = "oldmontrealmap"
-account_id = "3da170f83992089a9eebdd5bee516d04"
+account_id = "${CLOUDFLARE_ACCOUNT_ID}"
 compatibility_date = "2025-01-01"
 main = "worker/index.js"
 
