@@ -172,7 +172,7 @@ export default {
     // On mobile, skip the iframe page and open the PDF directly
     if (url.pathname === '/old-montreal-map-pdf' || url.pathname === '/carte-vieux-montreal-pdf') {
       const ua = request.headers.get('User-Agent') || '';
-      if (/Android|iPhone|iPad|iPod|Mobile/i.test(ua)) {
+      if (/Android|iPhone|iPad|iPod|Mobile/i.test(ua) && !/bot|crawl|spider|google|bing|facebook|twitter|slack|preview/i.test(ua)) {
         const pdf = url.pathname === '/old-montreal-map-pdf'
           ? '/old-montreal-official-map-2026.pdf'
           : '/carte-officielle-vieux-montreal-2026.pdf';
