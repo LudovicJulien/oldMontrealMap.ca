@@ -33,30 +33,36 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
 <style>
-  :root{--blue:#0a78c2;--blue-deep:#075a93;--blue-ink:#062e4a;--ink:#1a2a35;--muted:#5a7385;--line:#e3edf5}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/s/archivo/v25/k3kPo8UDI-1M0wlSV9XAw6lQkqWY8Q82sLydOxI.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  :root{--blue:#0a78c2;--blue-deep:#075a93;--blue-ink:#062e4a;--ink:#1a2a35;--muted:#5a7385;--line:#e3edf5;--r-pill:50px}
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;color:var(--ink);background:#f3f4f6}
-  header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 1.25rem;background:#fff;border-bottom:1px solid var(--line);flex-shrink:0}
-  .header-left{display:flex;flex-direction:column;gap:.1rem;min-width:0}
-  .brand{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
-  h1{font-size:.95rem;font-weight:700;color:var(--blue-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .header-right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
-  .btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:.45rem 1.1rem;border-radius:5px;font-weight:600;font-size:.82rem;transition:background .15s;white-space:nowrap}
+  html,body{height:100%;overflow:hidden;font-family:'Archivo',system-ui,sans-serif;color:var(--ink);background:#f3f4f6}
+  header{background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px;padding:0 1.5rem}
+  .brand{font-weight:800;letter-spacing:.5px;font-size:15px;color:var(--blue-ink)}
+  .brand small{display:block;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  .nav-actions{display:flex;align-items:center;gap:12px}
+  .btn{background:var(--blue);color:#fff;padding:11px 22px;border-radius:var(--r-pill);font-weight:700;font-size:14px;border:none;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;text-decoration:none}
   .btn:hover{background:var(--blue-deep)}
-  .back{font-size:.78rem;color:var(--muted);text-decoration:none;white-space:nowrap}
+  .btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--blue);background:rgba(10,120,194,.06)}
+  .lang-btn{padding:9px 16px;font-size:13px;letter-spacing:.5px;font-weight:700}
+  .back{font-size:.82rem;color:var(--muted);text-decoration:none;white-space:nowrap}
   .back:hover{color:var(--blue)}
-  .pdf-wrap{display:flex;flex-direction:column;height:calc(100vh - 49px)}
-  iframe{flex:1;width:100%;height:100%;border:none;display:block}
+  .pdf-wrap{height:calc(100vh - 70px)}
+  iframe{width:100%;height:100%;border:none;display:block}
 </style>
 </head>
 <body>
 <header>
-  <div class="header-left">
-    <span class="brand">Old Montréal Official Map · 2026</span>
-    <h1>Official Map of Old Montréal 2026</h1>
-  </div>
-  <div class="header-right">
-    <a href="https://www.oldmontrealmap.ca/" class="back">← oldmontrealmap.ca</a>
+  <div class="nav">
+    <div class="brand">
+      <div>OLD MONTRÉAL<small>Official Map 2026</small></div>
+    </div>
+    <div class="nav-actions">
+      <a href="https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf" class="btn ghost lang-btn" hreflang="fr" title="Version française">FR</a>
+      <a href="https://www.oldmontrealmap.ca/" class="back">← oldmontrealmap.ca</a>
+    </div>
   </div>
 </header>
 <div class="pdf-wrap">
