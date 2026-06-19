@@ -69,6 +69,11 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{font-family:var(--sans);color:var(--ink);background:var(--paper)}
+  html{scrollbar-color:var(--blue) var(--mist);scrollbar-width:thin}
+  ::-webkit-scrollbar{width:6px}
+  ::-webkit-scrollbar-track{background:var(--mist)}
+  ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:99px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--blue-deep)}
   /* ── NAV ── */
   header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
