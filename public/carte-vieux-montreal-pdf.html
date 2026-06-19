@@ -39,7 +39,7 @@
   html,body{height:100%;font-family:'Archivo',system-ui,sans-serif;color:var(--ink);background:#f3f4f6}
   header{background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   .nav{position:relative;display:flex;align-items:center;justify-content:space-between;height:70px;padding:0 1.5rem}
-  .brand{font-weight:800;letter-spacing:.5px;font-size:15px;color:var(--blue-ink)}
+  .brand{font-weight:800;letter-spacing:.5px;font-size:15px;color:var(--blue-ink);text-decoration:none}
   .brand small{display:block;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
   .nav-title{position:absolute;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none}
   .nav-title strong{display:block;font-size:14px;font-weight:700;color:var(--blue-ink)}
@@ -59,9 +59,9 @@
 <body>
 <header>
   <div class="nav">
-    <div class="brand">
+    <a class="brand" href="https://www.cartevieuxmontreal.ca/">
       <div>VIEUX-MONTRÉAL<small>Carte officielle 2026</small></div>
-    </div>
+    </a>
     <div class="nav-title">
       <strong>Carte officielle du Vieux-Montréal</strong>
       <span>Édition 2026 · PDF gratuit</span>
