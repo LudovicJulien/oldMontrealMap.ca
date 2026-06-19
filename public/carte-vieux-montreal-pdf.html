@@ -43,6 +43,12 @@
   "contentUrl": "https://www.cartevieuxmontreal.ca/carte-officielle-vieux-montreal-2026.pdf",
   "inLanguage": "fr",
   "isAccessibleForFree": true,
+  "mapType": "https://schema.org/TouristMap",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.5048,
+    "longitude": -73.5540
+  },
   "keywords": [
     "carte Vieux-Montréal",
     "carte Vieux-Montréal PDF",
@@ -53,16 +59,18 @@
     "plan Vieux-Montréal PDF"
   ],
   "about": {
-    "@type": "Place",
+    "@type": "TouristAttraction",
     "name": "Vieux-Montréal",
     "alternateName": "Old Montréal",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Montréal",
+      "addressRegion": "QC",
+      "addressCountry": "CA"
+    },
     "geo": {"@type": "GeoCoordinates", "latitude": 45.5048, "longitude": -73.5540}
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Carte officielle Vieux-Montréal",
-    "url": "https://www.cartevieuxmontreal.ca"
-  }
+  "publisher": {"@id": "https://www.oldmontrealmap.ca/#organization"}
 }
 </script>
 <style>
