@@ -50,25 +50,10 @@
   .btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--line)}
   .btn.ghost:hover{border-color:var(--blue);background:rgba(10,120,194,.06)}
   .lang-btn{padding:9px 16px;font-size:13px;letter-spacing:.5px;font-weight:700}
-  /* Desktop: iframe, hide mobile fallback */
-  .pdf-wrap{height:calc(100vh - 70px);overflow:hidden}
+  html,body{overflow:hidden}
+  .pdf-wrap{height:calc(100vh - 70px)}
   iframe{width:100%;height:100%;border:none;display:block}
-  .mobile-cta{display:none}
-  /* Mobile: hide iframe, show CTA */
-  @media(max-width:768px){
-    .nav-title{display:none}
-    html,body{overflow:auto}
-    .pdf-wrap{height:auto;overflow:visible}
-    iframe{display:none}
-    .mobile-cta{
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:1.5rem;padding:3rem 1.5rem;text-align:center;
-      min-height:calc(100vh - 70px);
-    }
-    .mobile-cta h2{font-size:1.3rem;font-weight:700;color:var(--blue-ink);line-height:1.3}
-    .mobile-cta p{font-size:.9rem;color:var(--muted);max-width:300px;line-height:1.6}
-    .mobile-cta .btn{font-size:1rem;padding:14px 28px}
-  }
+  @media(max-width:600px){.nav-title{display:none}}
 </style>
 </head>
 <body>
@@ -88,11 +73,6 @@
 </header>
 <div class="pdf-wrap">
   <iframe src="/carte-officielle-vieux-montreal-2026.pdf" title="Carte officielle du Vieux-Montréal 2026"></iframe>
-</div>
-<div class="mobile-cta">
-  <h2>Carte officielle du Vieux-Montréal 2026</h2>
-  <p>Chaque musée, monument historique, restaurant et le circuit nocturne illuminé — PDF gratuit.</p>
-  <a href="/carte-officielle-vieux-montreal-2026.pdf" class="btn">Ouvrir le PDF</a>
 </div>
 </body>
 </html>

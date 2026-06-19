@@ -169,6 +169,17 @@ export default {
       return Response.redirect('https://www.oldmontrealmap.ca/old-montreal-map-pdf', 301);
     }
 
+    // On mobile, skip the iframe page and open the PDF directly
+    if (url.pathname === '/old-montreal-map-pdf' || url.pathname === '/carte-vieux-montreal-pdf') {
+      const ua = request.headers.get('User-Agent') || '';
+      if (/Android|iPhone|iPad|iPod|Mobile/i.test(ua)) {
+        const pdf = url.pathname === '/old-montreal-map-pdf'
+          ? '/old-montreal-official-map-2026.pdf'
+          : '/carte-officielle-vieux-montreal-2026.pdf';
+        return Response.redirect(new URL(pdf, url.origin).toString(), 302);
+      }
+    }
+
     // Clean URL routing for PDF landing pages
     if (url.pathname === '/old-montreal-map-pdf' || url.pathname === '/carte-vieux-montreal-pdf') {
       const htmlUrl = new URL(url.pathname + '.html', url.origin);
