@@ -20,9 +20,9 @@ test.describe('EN — oldmontrealmap.ca', () => {
     await expect(page.locator('h1').first()).toBeVisible();
   });
 
-  test('EN PDF link is present and points to old-montreal-official-map-2026.pdf', async ({ page }) => {
+  test('EN PDF link is present and points to /old-montreal-map-pdf', async ({ page }) => {
     await page.goto('/');
-    const pdfLink = page.locator('a[href="old-montreal-official-map-2026.pdf"]').first();
+    const pdfLink = page.locator('a[href="/old-montreal-map-pdf"]').first();
     await expect(pdfLink).toBeVisible();
   });
 
@@ -67,9 +67,9 @@ test.describe('FR — cartevieuxmontreal.ca', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
   });
 
-  test('FR PDF link points to carte-officielle-vieux-montreal-2026.pdf', async ({ page }) => {
+  test('FR PDF link points to /carte-vieux-montreal-pdf', async ({ page }) => {
     await page.goto('/');
-    const pdfLink = page.locator('a[href="carte-officielle-vieux-montreal-2026.pdf"]').first();
+    const pdfLink = page.locator('a[href="/carte-vieux-montreal-pdf"]').first();
     await expect(pdfLink).toBeVisible();
   });
 
