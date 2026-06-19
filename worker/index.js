@@ -154,6 +154,12 @@ export default {
 
     const lang = url.hostname.includes('cartevieuxmontreal') ? 'fr' : 'en';
 
+    // Serve French favicon when /favicon.ico is requested on the French domain
+    if (lang === 'fr' && url.pathname === '/favicon.ico') {
+      const frIconUrl = new URL('/img/favicon-fr.ico', url.origin);
+      return env.ASSETS.fetch(frIconUrl.toString());
+    }
+
     // Redirect PDF landing pages to their canonical domain
     if (url.pathname === '/carte-vieux-montreal-pdf' && lang === 'en') {
       return Response.redirect('https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf', 301);
