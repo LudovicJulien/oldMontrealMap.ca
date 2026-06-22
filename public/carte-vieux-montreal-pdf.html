@@ -143,9 +143,12 @@
   .copyright a{color:rgba(255,255,255,.6);text-decoration:none}
   .copyright a:hover{color:#fff}
   @media(max-width:600px){.nav-title{display:none}.wrap{padding:0 18px}.section{padding:60px 0}}
+  .skip-link{position:absolute;top:-40px;left:0;background:#000;color:#fff;padding:8px 16px;z-index:9999;text-decoration:none;font-size:.875rem}
+  .skip-link:focus{top:0}
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Passer au contenu principal</a>
 <header>
   <div class="wrap nav">
     <a class="brand" href="https://www.cartevieuxmontreal.ca/">
@@ -161,7 +164,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
 <div class="pdf-wrap">
   <iframe src="/carte-officielle-vieux-montreal-2026.pdf" title="Carte officielle du Vieux-Montréal 2026"></iframe>
 </div>

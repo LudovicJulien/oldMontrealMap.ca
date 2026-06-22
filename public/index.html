@@ -362,6 +362,8 @@
   .sb-pill:active{transform:scale(.97)}
   .sb-arr{display:inline-block;transition:transform .2s ease}
   .sb-pill:hover .sb-arr{transform:translateX(3px)}
+  .skip-link{position:absolute;top:-40px;left:0;background:#000;color:#fff;padding:8px 16px;z-index:9999;text-decoration:none;font-size:.875rem}
+  .skip-link:focus{top:0}
 </style>
 <script type="application/ld+json">
 {
@@ -421,6 +423,7 @@
 <script>if(location.hostname.includes('cartevieuxmontreal')&&document.documentElement.lang==='en')document.documentElement.style.visibility='hidden'</script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <!-- HEADER -->
 <header>
@@ -459,7 +462,7 @@
 </header>
 
 <!-- MAIN -->
-<main>
+<main id="main">
 
 <!-- HERO -->
 <section class="hero">
