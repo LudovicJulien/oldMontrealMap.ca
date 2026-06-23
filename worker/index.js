@@ -134,6 +134,8 @@ const FR = [
 ];
 
 const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'",
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'SAMEORIGIN',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -195,14 +197,16 @@ export default {
           return new Response(html, { status: htmlResponse.status, headers: h });
         }
       }
-      return htmlResponse;
+      const h = new Headers(htmlResponse.headers);
+      applySecurityHeaders(h);
+      return new Response(htmlResponse.body, { status: htmlResponse.status, headers: h });
     }
 
     // Serve FR-specific sitemap and robots.txt
     if (lang === 'fr') {
       if (url.pathname === '/sitemap.xml') {
         return new Response(
-          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-06-19</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf</loc>\n    <lastmod>2026-06-19</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
+          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-06-23</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf</loc>\n    <lastmod>2026-06-23</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
           { headers: { 'content-type': 'application/xml; charset=utf-8' } }
         );
       }
@@ -221,11 +225,18 @@ export default {
     if (url.pathname.endsWith('.pdf')) {
       const headers = new Headers(response.headers);
       headers.set('X-Robots-Tag', 'noindex');
+      applySecurityHeaders(headers);
       return new Response(response.body, { status: response.status, headers });
     }
 
     const contentType = response.headers.get('content-type') ?? '';
-    if (!contentType.includes('text/html') || lang === 'en') return response;
+    if (!contentType.includes('text/html')) return response;
+
+    if (lang === 'en') {
+      const headers = new Headers(response.headers);
+      applySecurityHeaders(headers);
+      return new Response(response.body, { status: response.status, headers });
+    }
 
     let html = await response.text();
     for (const [from, to] of FR) {
