@@ -133,17 +133,20 @@ const FR = [
   ['Site by <a', 'Site par <a'],
 ];
 
-const SECURITY_HEADERS = {
+const BASE_SECURITY_HEADERS = {
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
-  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'",
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'SAMEORIGIN',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'geolocation=(), camera=(), microphone=()',
 };
 
-function applySecurityHeaders(headers) {
-  for (const [k, v] of Object.entries(SECURITY_HEADERS)) headers.set(k, v);
+function applySecurityHeaders(headers, nonce = null) {
+  for (const [k, v] of Object.entries(BASE_SECURITY_HEADERS)) headers.set(k, v);
+  const scriptSrc = nonce ? `'self' 'nonce-${nonce}'` : `'self'`;
+  headers.set('Content-Security-Policy',
+    `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'`
+  );
 }
 
 export default {
@@ -232,21 +235,26 @@ export default {
     const contentType = response.headers.get('content-type') ?? '';
     if (!contentType.includes('text/html')) return response;
 
+    const nonce = crypto.randomUUID();
+
     if (lang === 'en') {
+      let html = await response.text();
+      html = html.replaceAll('<script>', `<script nonce="${nonce}">`);
       const headers = new Headers(response.headers);
-      applySecurityHeaders(headers);
-      return new Response(response.body, { status: response.status, headers });
+      headers.delete('content-length');
+      applySecurityHeaders(headers, nonce);
+      return new Response(html, { status: response.status, headers });
     }
 
     let html = await response.text();
     for (const [from, to] of FR) {
       html = html.replaceAll(from, to);
     }
-
+    html = html.replaceAll('<script>', `<script nonce="${nonce}">`);
 
     const headers = new Headers(response.headers);
     headers.delete('content-length');
-    applySecurityHeaders(headers);
+    applySecurityHeaders(headers, nonce);
     return new Response(html, { status: response.status, headers });
   },
 };
