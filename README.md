@@ -139,7 +139,7 @@ npm run test:e2e
 npm run test:e2e:ui
 ```
 
-**Unit tests** cover: security path blocking, EN passthrough, FR HTML rewriting, `content-length` header removal after rewrite, HTTP security headers on FR responses, FR sitemap and robots generation, non-HTML asset passthrough.
+**Unit tests** cover: security path blocking, EN passthrough, FR HTML rewriting, `content-length` header removal after rewrite, HTTP security headers on EN and FR responses, CSP nonce injection and HTML/header consistency, `Cache-Control: no-store` on HTML, ld+json nonce exclusion, FR sitemap and robots generation, non-HTML asset passthrough, Worker error handling (500 on upstream failure).
 
 **E2E tests** cover: page titles, `lang` attributes, PDF availability (HTTP 200), in-page anchor links, Open Graph metadata consistency, FR domain translations, FR sitemap validity, mobile sticky CTA visibility after scroll, security rules on the live site.
 
