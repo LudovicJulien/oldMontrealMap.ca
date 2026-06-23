@@ -58,6 +58,20 @@ HTTP request
 
 ---
 
+## Security
+
+The Worker enforces a strict security posture on every response:
+
+- **HSTS** with a 1-year max-age, `includeSubDomains`, and `preload` flag
+- **CSP** with per-request nonces — no `unsafe-inline` in `script-src`
+- **CAA DNS records** restricting certificate issuance to trusted CAs only
+- **Security headers** — `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`
+
+[![Security Headers](https://img.shields.io/badge/Security%20Headers-A%2B-brightgreen)](https://securityheaders.com/?q=www.oldmontrealmap.ca&followRedirects=on)
+[![SSL Labs](https://img.shields.io/badge/SSL%20Labs-A%2B-brightgreen)](https://www.ssllabs.com/ssltest/analyze.html?d=www.oldmontrealmap.ca)
+
+---
+
 ## Stack
 
 | Layer | Technology |
