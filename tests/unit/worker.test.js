@@ -3,7 +3,7 @@ import worker from '../../worker/index.js';
 
 const EN_HTML = `<html lang="en">
 <head><title>Old Montréal Official Map 2026 | Free PDF Walking Map</title></head>
-<body><h1>Old Montréal</h1></body>
+<body><script>console.log('hello')</script><h1>Old Montréal</h1></body>
 </html>`;
 
 const makeEnv = (html = EN_HTML) => ({
@@ -68,6 +68,59 @@ describe('Worker — English domain', () => {
     expect(html).toContain('lang="en"');
     expect(html).not.toContain('lang="fr"');
   });
+
+  it('sets HTTP security headers on EN HTML responses', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/'),
+      makeEnv()
+    );
+    expect(res.headers.get('Strict-Transport-Security')).toBe('max-age=31536000; includeSubDomains; preload');
+    expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(res.headers.get('X-Frame-Options')).toBe('SAMEORIGIN');
+    expect(res.headers.get('Referrer-Policy')).toBe('strict-origin-when-cross-origin');
+    expect(res.headers.get('Permissions-Policy')).toBe('geolocation=(), camera=(), microphone=()');
+  });
+
+  it('injects a CSP nonce into <script> tags and the CSP header', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/'),
+      makeEnv()
+    );
+    const html = await res.text();
+    const match = html.match(/nonce="([0-9a-f-]{36})"/);
+    expect(match).not.toBeNull();
+    expect(res.headers.get('Content-Security-Policy')).toContain(`'nonce-${match[1]}'`);
+  });
+
+  it('does not inject nonce on <script type="application/ld+json">', async () => {
+    const htmlWithJsonLd = EN_HTML.replace(
+      '<script>',
+      '<script type="application/ld+json">{"@type":"WebSite"}</script><script>'
+    );
+    const res = await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/'),
+      makeEnv(htmlWithJsonLd)
+    );
+    const html = await res.text();
+    expect(html).toContain('<script type="application/ld+json">');
+    expect(html).not.toMatch(/type="application\/ld\+json" nonce=/);
+  });
+
+  it('sets Cache-Control: no-store on EN HTML responses', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/'),
+      makeEnv()
+    );
+    expect(res.headers.get('Cache-Control')).toBe('no-store');
+  });
+
+  it('removes content-length to avoid mismatch after nonce injection', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/'),
+      makeEnv()
+    );
+    expect(res.headers.get('content-length')).toBeNull();
+  });
 });
 
 describe('Worker — French domain (cartevieuxmontreal.ca)', () => {
@@ -94,10 +147,30 @@ describe('Worker — French domain (cartevieuxmontreal.ca)', () => {
       new Request('https://www.cartevieuxmontreal.ca/'),
       makeEnv()
     );
+    expect(res.headers.get('Strict-Transport-Security')).toBe('max-age=31536000; includeSubDomains; preload');
     expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
     expect(res.headers.get('X-Frame-Options')).toBe('SAMEORIGIN');
     expect(res.headers.get('Referrer-Policy')).toBe('strict-origin-when-cross-origin');
     expect(res.headers.get('Permissions-Policy')).toBe('geolocation=(), camera=(), microphone=()');
+  });
+
+  it('injects a CSP nonce into <script> tags and the CSP header on FR responses', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.cartevieuxmontreal.ca/'),
+      makeEnv()
+    );
+    const html = await res.text();
+    const match = html.match(/nonce="([0-9a-f-]{36})"/);
+    expect(match).not.toBeNull();
+    expect(res.headers.get('Content-Security-Policy')).toContain(`'nonce-${match[1]}'`);
+  });
+
+  it('sets Cache-Control: no-store on FR HTML responses', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.cartevieuxmontreal.ca/'),
+      makeEnv()
+    );
+    expect(res.headers.get('Cache-Control')).toBe('no-store');
   });
 
   it('does not expose X-Worker-Executed header', async () => {
@@ -151,5 +224,22 @@ describe('Worker — FR custom responses', () => {
     const text = await res.text();
     expect(text).toContain('Sitemap: https://www.cartevieuxmontreal.ca/sitemap.xml');
     expect(env.ASSETS.fetch).not.toHaveBeenCalled();
+  });
+});
+
+describe('Worker — error handling', () => {
+  it('returns 500 with security headers if ASSETS.fetch throws', async () => {
+    const env = {
+      ASSETS: {
+        fetch: vi.fn().mockRejectedValue(new Error('upstream failure')),
+      },
+    };
+    const res = await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/'),
+      env
+    );
+    expect(res.status).toBe(500);
+    expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(res.headers.get('Content-Security-Policy')).not.toBeNull();
   });
 });

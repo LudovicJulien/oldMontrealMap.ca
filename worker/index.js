@@ -147,10 +147,12 @@ function applySecurityHeaders(headers, nonce = null) {
   headers.set('Content-Security-Policy',
     `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'`
   );
+  if (nonce) headers.set('Cache-Control', 'no-store');
 }
 
 export default {
   async fetch(request, env) {
+    try {
     const url = new URL(request.url);
 
     // Block direct access to config/source files that land in the assets bucket
@@ -239,7 +241,10 @@ export default {
 
     if (lang === 'en') {
       let html = await response.text();
-      html = html.replaceAll('<script>', `<script nonce="${nonce}">`);
+      html = html.replace(/<script([^>]*)>/g, (match, attrs) => {
+      if (attrs && /type=["'](?!text\/javascript|module)[^"']+["']/i.test(attrs)) return match;
+      return attrs ? `<script${attrs} nonce="${nonce}">` : `<script nonce="${nonce}">`;
+    });
       const headers = new Headers(response.headers);
       headers.delete('content-length');
       applySecurityHeaders(headers, nonce);
@@ -250,11 +255,19 @@ export default {
     for (const [from, to] of FR) {
       html = html.replaceAll(from, to);
     }
-    html = html.replaceAll('<script>', `<script nonce="${nonce}">`);
+    html = html.replace(/<script([^>]*)>/g, (match, attrs) => {
+      if (attrs && /type=["'](?!text\/javascript|module)[^"']+["']/i.test(attrs)) return match;
+      return attrs ? `<script${attrs} nonce="${nonce}">` : `<script nonce="${nonce}">`;
+    });
 
     const headers = new Headers(response.headers);
     headers.delete('content-length');
     applySecurityHeaders(headers, nonce);
     return new Response(html, { status: response.status, headers });
+    } catch {
+      const h = new Headers({ 'Content-Type': 'text/plain; charset=utf-8' });
+      applySecurityHeaders(h);
+      return new Response('Internal Server Error', { status: 500, headers: h });
+    }
   },
 };
