@@ -237,7 +237,7 @@ function applySecurityHeaders(headers, nonce = null) {
   for (const [k, v] of Object.entries(BASE_SECURITY_HEADERS)) headers.set(k, v);
   const scriptSrc = nonce ? `'self' 'nonce-${nonce}'` : `'self'`;
   headers.set('Content-Security-Policy',
-    `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'`
+    `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'`
   );
   if (nonce) headers.set('Cache-Control', 'no-store');
 }
