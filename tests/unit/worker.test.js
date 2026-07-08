@@ -181,7 +181,7 @@ describe('Worker — French domain (cartevieuxmontreal.ca)', () => {
     expect(res.headers.get('X-Worker-Executed')).toBeNull();
   });
 
-  it('does not transform non-HTML assets (images, PDFs)', async () => {
+   it('does not rewrite content but still applies security headers on non-HTML assets', async () => {
     const env = {
       ASSETS: {
         fetch: vi.fn().mockResolvedValue(
@@ -196,7 +196,8 @@ describe('Worker — French domain (cartevieuxmontreal.ca)', () => {
       new Request('https://www.cartevieuxmontreal.ca/img/carte-cover.webp'),
       env
     );
-    expect(res.headers.get('X-Content-Type-Options')).toBeNull();
+    expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(res.headers.get('Strict-Transport-Security')).toBe('max-age=31536000; includeSubDomains; preload');
   });
 });
 

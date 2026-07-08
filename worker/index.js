@@ -327,7 +327,11 @@ export default {
     }
 
     const contentType = response.headers.get('content-type') ?? '';
-    if (!contentType.includes('text/html')) return response;
+    if (!contentType.includes('text/html')) {
+      const headers = new Headers(response.headers);
+      applySecurityHeaders(headers);
+      return new Response(response.body, { status: response.status, headers });
+    }
 
     const nonce = crypto.randomUUID();
 
