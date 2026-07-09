@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import worker from '../../worker/index.js';
 
 const EN_HTML = `<html lang="en">
-<head><title>Old Montréal Official Map 2026 | Free PDF Walking Map</title></head>
+<head><title>Old Montréal Official Map 2026 | Free PDF Walking Map</title><style>body{color:red}</style></head>
 <body><script>console.log('hello')</script><h1>Old Montréal</h1></body>
 </html>`;
 
@@ -92,6 +92,18 @@ describe('Worker — English domain', () => {
     expect(res.headers.get('Content-Security-Policy')).toContain(`'nonce-${match[1]}'`);
   });
 
+  it('injects a CSP nonce into <style> tags and the CSP header', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/'),
+      makeEnv()
+    );
+    const html = await res.text();
+    const match = html.match(/nonce="([0-9a-f-]{36})"/);
+    expect(match).not.toBeNull();
+    expect(html).toMatch(/<style[^>]+nonce="[0-9a-f-]{36}"/);
+    expect(res.headers.get('Content-Security-Policy')).toContain(`'nonce-${match[1]}'`);
+  });
+
   it('does not inject nonce on <script type="application/ld+json">', async () => {
     const htmlWithJsonLd = EN_HTML.replace(
       '<script>',
@@ -162,6 +174,18 @@ describe('Worker — French domain (cartevieuxmontreal.ca)', () => {
     const html = await res.text();
     const match = html.match(/nonce="([0-9a-f-]{36})"/);
     expect(match).not.toBeNull();
+    expect(res.headers.get('Content-Security-Policy')).toContain(`'nonce-${match[1]}'`);
+  });
+
+  it('injects a CSP nonce into <style> tags and the CSP header on FR responses', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.cartevieuxmontreal.ca/'),
+      makeEnv()
+    );
+    const html = await res.text();
+    const match = html.match(/nonce="([0-9a-f-]{36})"/);
+    expect(match).not.toBeNull();
+    expect(html).toMatch(/<style[^>]+nonce="[0-9a-f-]{36}"/);
     expect(res.headers.get('Content-Security-Policy')).toContain(`'nonce-${match[1]}'`);
   });
 

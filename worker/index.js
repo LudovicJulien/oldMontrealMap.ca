@@ -236,8 +236,9 @@ const BASE_SECURITY_HEADERS = {
 function applySecurityHeaders(headers, nonce = null) {
   for (const [k, v] of Object.entries(BASE_SECURITY_HEADERS)) headers.set(k, v);
   const scriptSrc = nonce ? `'self' 'nonce-${nonce}'` : `'self'`;
+  const styleSrc = nonce ? `'self' 'nonce-${nonce}'` : `'self' 'unsafe-inline'`;
   headers.set('Content-Security-Policy',
-    `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'`
+    `default-src 'self'; script-src ${scriptSrc}; style-src ${styleSrc} https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'`
   );
   if (nonce) headers.set('Cache-Control', 'no-store');
 }
@@ -338,9 +339,12 @@ export default {
     if (lang === 'en') {
       let html = await response.text();
       html = html.replace(/<script([^>]*)>/g, (match, attrs) => {
-      if (attrs && /type=["'](?!text\/javascript|module)[^"']+["']/i.test(attrs)) return match;
-      return attrs ? `<script${attrs} nonce="${nonce}">` : `<script nonce="${nonce}">`;
-    });
+        if (attrs && /type=["'](?!text\/javascript|module)[^"']+["']/i.test(attrs)) return match;
+        return attrs ? `<script${attrs} nonce="${nonce}">` : `<script nonce="${nonce}">`;
+      });
+      html = html.replace(/<style([^>]*)>/g, (match, attrs) =>
+        attrs ? `<style${attrs} nonce="${nonce}">` : `<style nonce="${nonce}">`
+      );
       const headers = new Headers(response.headers);
       headers.delete('content-length');
       applySecurityHeaders(headers, nonce);
@@ -355,6 +359,9 @@ export default {
       if (attrs && /type=["'](?!text\/javascript|module)[^"']+["']/i.test(attrs)) return match;
       return attrs ? `<script${attrs} nonce="${nonce}">` : `<script nonce="${nonce}">`;
     });
+    html = html.replace(/<style([^>]*)>/g, (match, attrs) =>
+      attrs ? `<style${attrs} nonce="${nonce}">` : `<style nonce="${nonce}">`
+    );
 
     const headers = new Headers(response.headers);
     headers.delete('content-length');
