@@ -253,6 +253,17 @@ export default {
       return new Response('Not Found', { status: 404 });
     }
 
+    // Opt in to Chrome's private prefetch proxy; must be served with this exact
+    // MIME type or Chrome treats the advice as absent (defaults to disallow)
+    if (url.pathname === '/.well-known/traffic-advice') {
+      const headers = new Headers({ 'Content-Type': 'application/trafficadvice+json' });
+      applySecurityHeaders(headers);
+      return new Response(
+        JSON.stringify([{ user_agent: 'prefetch-proxy', disallow: false }]),
+        { headers }
+      );
+    }
+
     const lang = url.hostname.includes('cartevieuxmontreal') ? 'fr' : 'en';
 
     // Serve French favicon when /favicon.ico is requested on the French domain

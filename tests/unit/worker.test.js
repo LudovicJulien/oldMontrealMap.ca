@@ -45,6 +45,25 @@ describe('Worker — security', () => {
     );
     expect(env.ASSETS.fetch).not.toHaveBeenCalled();
   });
+
+  it('serves /.well-known/traffic-advice with the required MIME type', async () => {
+    const res = await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/.well-known/traffic-advice'),
+      makeEnv()
+    );
+    expect(res.status).toBe(200);
+    expect(res.headers.get('content-type')).toBe('application/trafficadvice+json');
+    expect(await res.json()).toEqual([{ user_agent: 'prefetch-proxy', disallow: false }]);
+  });
+
+  it('does not call ASSETS for /.well-known/traffic-advice', async () => {
+    const env = makeEnv();
+    await worker.fetch(
+      new Request('https://www.oldmontrealmap.ca/.well-known/traffic-advice'),
+      env
+    );
+    expect(env.ASSETS.fetch).not.toHaveBeenCalled();
+  });
 });
 
 describe('Worker — English domain', () => {
