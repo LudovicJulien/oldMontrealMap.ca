@@ -223,6 +223,18 @@ const FR = [
   ['© 2026 Old Montréal Official Map. All rights reserved.',
    '© 2026 Carte officielle du Vieux-Montréal. Tous droits réservés.'],
   ['Site by <a', 'Site par <a'],
+
+  // ── 404 PAGE ─────────────────────────────────────────────────────────────
+  ['<title>Page Not Found (404) | Old Montréal Official Map</title>',
+   '<title>Page introuvable (404) | Carte officielle du Vieux-Montréal</title>'],
+  ["This page doesn't exist. Find the official map and guide to Old Montréal, or head back home.",
+   "Cette page n'existe pas. Retrouvez la carte officielle et le guide du Vieux-Montréal, ou retournez à l'accueil."],
+  ['<span class="dot"></span>Off The Map', '<span class="dot"></span>Hors de la carte'],
+  ['You are not here.', "Vous n'êtes pas ici."],
+  ["This street isn't on our map.", 'Cette rue ne figure pas sur notre carte.'],
+  ["Even after four centuries of charting every cobblestone in the quarter, we've never come across this address. It may have moved, been renamed, or simply never existed — a shortcut through the old fortifications, perhaps.",
+   "Même après quatre siècles à cartographier chaque pavé du quartier, nous n'avons jamais croisé cette adresse. Elle a peut-être été déplacée, renommée, ou n'a simplement jamais existé — un raccourci à travers les anciennes fortifications, peut-être."],
+  ['Back to Home', "Retour à l'accueil"],
 ];
 
 const BASE_SECURITY_HEADERS = {

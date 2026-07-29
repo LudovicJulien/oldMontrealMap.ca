@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="content-language" content="en">
+<title>Page Not Found (404) | Old Montréal Official Map</title>
+<meta name="description" content="This page doesn't exist. Find the official map and guide to Old Montréal, or head back home.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/s/archivo/v25/k3kPo8UDI-1M0wlSV9XAw6lQkqWY8Q82sLydOxI.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeA.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:'Fraunces';font-style:italic;font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/s/fraunces/v38/6NUs8FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChJdt9hFwpX9W37ll9_mv0iQg.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  :root{
+    --blue:#0a78c2;--blue-deep:#075a93;--blue-ink:#062e4a;
+    --gold:#f5c518;--gold-deep:#e0a800;
+    --paper:#ffffff;--mist:#f3f8fc;--line:#e3edf5;--ink:#1a2a35;--muted:#5a7385;
+    --sans:'Archivo',sans-serif;--serif:'Fraunces',serif;
+    --r-pill:50px;--r-m:14px;--r-s:6px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100%}
+  html{scrollbar-color:var(--blue) var(--mist);scrollbar-width:thin}
+  ::-webkit-scrollbar{width:6px}
+  ::-webkit-scrollbar-track{background:var(--mist)}
+  ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:99px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--blue-deep)}
+  a{color:inherit;text-decoration:none}
+  .skip-link{position:absolute;top:-40px;left:0;background:#000;color:#fff;padding:8px 16px;z-index:9999;text-decoration:none;font-size:.875rem}
+  .skip-link:focus{top:0}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* ── NAV ── */
+  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{font-weight:800;letter-spacing:.5px;font-size:15px;color:var(--blue-ink)}
+  .brand small{display:block;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  .btn{background:var(--blue);color:#fff;padding:11px 22px;border-radius:var(--r-pill);font-weight:700;font-size:14px;border:none;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px}
+  .btn:hover{background:var(--blue-deep)}
+  .btn.gold{background:var(--gold);color:var(--blue-ink)}
+  .btn.gold:hover{background:var(--gold-deep)}
+  .btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--blue);background:rgba(10,120,194,.06)}
+  .btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+  .lang-btn{padding:9px 16px;font-size:13px;letter-spacing:.5px;font-weight:700}
+
+  /* ── 404 HERO ── */
+  main{flex:1;display:flex;align-items:center}
+  .notfound{width:100%;padding:70px 0 90px;position:relative;overflow:clip;
+    background:radial-gradient(900px 400px at 70% 0%, rgba(10,120,194,.06), transparent 55%);
+  }
+  .nf-inner{text-align:center;max-width:640px;margin:0 auto}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-deep);background:var(--mist);border:1px solid var(--line);padding:7px 15px;border-radius:var(--r-pill);margin-bottom:28px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(245,197,24,.25)}
+  .nf-badge{font-family:var(--serif);font-weight:600;font-size:clamp(72px,14vw,128px);line-height:1;letter-spacing:-2px;color:var(--blue-ink);display:flex;align-items:center;justify-content:center;gap:.06em}
+  .nf-zero{width:.56em;height:.56em;border-radius:50%;border:.085em solid var(--gold);position:relative;flex-shrink:0}
+  .nf-zero::after{content:'';position:absolute;top:50%;left:50%;width:.13em;height:.13em;background:var(--blue);border-radius:50%;transform:translate(-50%,-50%)}
+  .nf-caption{font-size:13px;color:var(--muted);letter-spacing:.5px;margin-top:10px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4vw,42px);color:var(--blue-ink);letter-spacing:-.5px;line-height:1.15;margin-top:30px}
+  .lede{font-size:17px;color:var(--muted);margin:18px auto 0;max-width:480px;line-height:1.65}
+  .nf-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+  @media(max-width:480px){.nf-cta{flex-direction:column;align-items:stretch}.nf-cta .btn{justify-content:center}}
+
+  /* ── FOOTER ── */
+  footer{background:var(--blue-ink);color:#fff;padding:54px 0 30px;margin-top:10px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .foot-brand{max-width:300px}
+  .foot-brand .brand{color:#fff}
+  .foot-brand .brand small{color:rgba(255,255,255,.6)}
+  .foot-brand p{color:rgba(255,255,255,.65);font-size:14px;margin-top:14px;line-height:1.65}
+  .foot-col h2{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-family:var(--sans);font-weight:700}
+  .foot-col a{display:block;color:rgba(255,255,255,.75);font-size:14px;margin-bottom:9px;transition:.2s}
+  .foot-col a:hover{color:#fff}
+  .copyright{padding-top:24px;font-size:13px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .copyright a{color:rgba(255,255,255,.6)}
+  .copyright a:hover{color:#fff}
+  @media(max-width:600px){.wrap{padding:0 18px}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div>OLD MONTRÉAL<small>Official Map 2026</small></div>
+    </div>
+    <a href="https://www.cartevieuxmontreal.ca/" class="btn ghost lang-btn" hreflang="fr" title="Version française">FR</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="notfound">
+  <div class="wrap nf-inner">
+    <span class="eyebrow"><span class="dot"></span>Off The Map</span>
+    <div class="nf-badge" aria-hidden="true">4<span class="nf-zero"></span>4</div>
+    <p class="nf-caption">You are not here.</p>
+    <h1>This street isn't on our map.</h1>
+    <p class="lede">Even after four centuries of charting every cobblestone in the quarter, we've never come across this address. It may have moved, been renamed, or simply never existed — a shortcut through the old fortifications, perhaps.</p>
+    <div class="nf-cta">
+      <a href="/" class="btn gold">Back to Home</a>
+      <a href="/old-montreal-map-pdf" class="btn ghost">View the Map (PDF)</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <div>OLD MONTRÉAL<small>Official Map 2026</small></div>
+        </div>
+        <p>In partnership with Vieux-Montréal SDC. The trusted guide to the historic quarter for over 30 years.</p>
+      </div>
+      <div class="foot-col">
+        <h2>Explore</h2>
+        <a href="/#gallery">Gallery</a>
+        <a href="/#features">What's Inside</a>
+        <a href="/#paper">Paper Version</a>
+        <a href="/#about">About Old Montréal</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/old-montreal-map-pdf">View the Map</a>
+      </div>
+      <div class="foot-col">
+        <h2>Publisher</h2>
+        <a href="https://popmedia.ca/" target="_blank" rel="noopener">Pop Media</a>
+        <a href="mailto:mjulien@popmedia.ca">mjulien@popmedia.ca</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2026 Old Montréal Official Map. All rights reserved.</span>
+      <span>Site by <a href="https://www.linkedin.com/in/LudovicJulienLOG" target="_blank" rel="noopener">Ludovic Julien</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
