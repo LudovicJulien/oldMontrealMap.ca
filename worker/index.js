@@ -58,6 +58,8 @@ const FR = [
   ['href="/favicon.ico" sizes="any"', 'href="/img/favicon-fr.ico" sizes="any"'],
   ['href="/img/favicon-32x32.png"', 'href="/img/favicon-fr-32x32.png"'],
   ['href="/img/favicon-16x16.png"', 'href="/img/favicon-fr-16x16.png"'],
+  ['href="/img/favicon-48x48.png"', 'href="/img/favicon-fr-48x48.png"'],
+  ['href="/img/favicon-96x96.png"', 'href="/img/favicon-fr-96x96.png"'],
   ['href="/img/apple-touch-icon.png"', 'href="/img/apple-touch-icon-fr.png"'],
 
   // ── LANG SWITCHER ────────────────────────────────────────────────────────
@@ -327,7 +329,7 @@ export default {
     if (lang === 'fr') {
       if (url.pathname === '/sitemap.xml') {
         return new Response(
-          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-06-29</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf</loc>\n    <lastmod>2026-06-29</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
+          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/</loc>\n    <lastmod>2026-08-05</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://www.cartevieuxmontreal.ca/carte-vieux-montreal-pdf</loc>\n    <lastmod>2026-08-05</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>`,
           { headers: { 'content-type': 'application/xml; charset=utf-8' } }
         );
       }
